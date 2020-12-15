@@ -1,0 +1,5 @@
+Do following things:
+
+1. Update Recaptcha Site Key & Secrete Key inside config>recaptcha.php file
+
+2. Need Delete Account option? Go to Resource>views>profile>show.blade.php and uncomment the code at lower part to active the option.
