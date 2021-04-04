@@ -15,17 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'welcomeController@index')->name('home');
+Route::view('about', 'frontend.about')->name('about');
+Route::view('contact', 'frontend.contact')->name('contact');
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function(){
+
+Route::middleware(['auth:sanctum', 'user'])->group(function(){
+	Route::get('ask/question/new', 'AskQuestionController@index')->name('askquestion.index');
+	Route::post('ask/question/new', 'AskQuestionController@store')->name('askquestion.store');
+	Route::view('my-profile', 'frontend.myprofile')->name('myprofile.show');
+});
+
+
+Route::middleware(['auth:sanctum','admin'])->prefix('admin')->group(function(){
+	Route::get('/','AdminDashboardController@index');
 	Route::get('dashboard','AdminDashboardController@index')->name('dashboard');
-
-	Route::get('/contacts', 'ContactsController@index')->name('contacts.index');
-	Route::get('/contacts/getdata', 'ContactsController@getdata')->name('contacts.getdata');
-	Route::post('/contacts/store', 'ContactsController@store')->name('contacts.store');
-	Route::put('/contacts/update/{id}', 'ContactsController@update')->name('contacts.update');
-	Route::delete('/contacts/delete/{id}', 'ContactsController@delete')->name('contacts.delete');
 
 	//Template Routes
 	Route::view('/buttons','template.buttons')->name('template.button');

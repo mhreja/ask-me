@@ -1,43 +1,120 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('frontend.layouts.app')
 
-        <x-jet-validation-errors class="mb-4" />
+@section('title', 'Register')
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+@section('head')
+{!! htmlScriptTagJsApi() !!}
+<style>
+    .row div {
+        margin-bottom: 10px;
+    }
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+    label span {
+        color: red;
+    }
+</style>
+@endsection
+
+
+@section('content')
+
+<div class="breadcrumbs">
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Register</h1>
+            </div>
+            <div class="col-md-12">
+                <div class="crumbs">
+                    <a href="{{route('home')}}">Home</a>
+                    <span class="crumbs-span">/</span>
+                    <span class="current">Register</span>
+                </div>
+            </div>
+        </div><!-- End row -->
+    </section><!-- End container -->
+</div><!-- End breadcrumbs -->
+
+<section class="container main-content">
+    <div class="page-content">
+        <h2>Register</h2>
+        <div class="form-style form-style-3">
+            <div style="color:red; padding: 0 0 10px 0  ">
+                <x-jet-validation-errors class="mb-4" />
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            @if (session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ session('status') }}
             </div>
+            @endif
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+            <form method="POST" action="{{route('register')}}">
+                @csrf
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Resgister As <span>*</span></label>
+                        <select name="register_as">
+                            <option value="1" {{old('roll') == '1' ? 'selected' : ''}}>Student</option>
+                            <option value="2" {{old('roll') == '2' ? 'selected' : ''}}>Teacher</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Preparing for?</label>
+                        <input type="text" name="preparing_exams_for" value="{{old('preparing_exams_for')}}"
+                            placeholder="Exam Name">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Class</label>
+                        <input type="text" name="class" value="{{old('class')}}" placeholder="Class">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Full Name <span>*</span></label>
+                        <input type="text" name="name" value="{{old('name')}}" placeholder="John Doe">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Date of Birth</label>
+                        <input type="date" name="dob" value="{{old('dob')}}">
+                    </div>
+                    <div class="col-md-4">
+                        <label>City</label>
+                        <input type="text" name="city" value="{{old('city')}}" placeholder="Agra">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Email <span>*</span></label>
+                        <input type="text" name="email" value="{{old('email')}}" placeholder="john@mail.com">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Mobile <span>*</span></label>
+                        <input type="text" name="mobile" value="{{old('mobile')}}" placeholder="9732***000">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Username <span>*</span></label>
+                        <input type="text" name="username" value="{{old('username')}}" placeholder="john">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Password <span>*</span></label>
+                        <input type="password" name="password" placeholder="*********">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Confirm Password <span>*</span></label>
+                        <input type="password" name="password_confirmation" placeholder="*********">
+                    </div>
+                </div>
 
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+                <button type="submit" class="button color small login-submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+</section><!-- End container -->
+
+@endsection
+
+@section('scripts')
+
+@endsection
