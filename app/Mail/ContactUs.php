@@ -28,6 +28,7 @@ class ContactUs extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.ContactUs',['request'=>$this->request])->to('leon.willson@fineloans.org')->subject('New Contact Message');
+        //env('MAIL_USERNAME', 'admin@askme.example')
+        return $this->markdown('email.ContactUs',['request'=>$this->request])->to('mailtomdalam@gmail.com')->subject('New Contact Message');
     }
 }
