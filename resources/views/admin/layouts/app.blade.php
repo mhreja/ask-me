@@ -27,6 +27,11 @@
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{asset('mhreja/assets/images/favicon.png')}}">
 
+    <!-- App CSS -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
+
+    <!-- Extra CSS-->
     @yield('head')
 </head>
 
@@ -50,7 +55,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item {{Route::current()->getName() == 'dashboard' ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -65,7 +70,9 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['subjects.index',
+                'subjects.edit', 'topics.index',
+                'topics.edit'])) active @endif">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-book"></i>
@@ -74,8 +81,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Subjects BREAD :</h6>
-                        <a class="collapse-item" href="">Subjects</a>
-                        <a class="collapse-item" href="">Topics</a>
+                        <a class="collapse-item @if(in_array(Route::current()->getName(), ['subjects'])) active @endif"
+                            href="{{route('subjects')}}">Subjects</a>
+                        <a class="collapse-item @if(in_array(Route::current()->getName(), ['topics.index', 'topics.edit'])) active @endif"
+                            href="{{route('topics.index')}}">Topics</a>
                     </div>
                 </div>
             </li>
@@ -250,6 +259,11 @@
     <!-- DataTables -->
     <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
+    <!-- App JS -->
+    <script src="{{asset('js/app.js')}}"></script>
+    @livewireScripts
+
+
     <script>
         $(document).ready(function() {
           function dateTime() {
@@ -293,6 +307,7 @@
         });
     </script>
 
+    <!-- Extra JS-->
     @yield('scripts')
 
 </body>

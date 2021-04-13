@@ -32,5 +32,8 @@ Route::middleware(['auth:sanctum','admin'])->prefix('admin')->group(function(){
 	Route::get('/','AdminDashboardController@index');
 	Route::get('dashboard','AdminDashboardController@index')->name('dashboard');
 
+	Route::view('subjects', 'admin.Subjects.index')->name('subjects');
+	Route::resource('topics', 'TopicsController');
+
 	
 });
