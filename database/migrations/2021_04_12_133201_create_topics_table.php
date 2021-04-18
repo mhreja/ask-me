@@ -15,7 +15,7 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_id')
+            $table->foreignId('subject_id')->nullable()
                 ->constrained('subjects')
                 ->onDelete('cascade');
             $table->string('topic');

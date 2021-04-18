@@ -3,6 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use View;
+use App\Models\Subject;
+use App\Models\Topic;
+use App\Models\Question;
+use App\Models\Answer;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +29,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('frontend.inc.rightpanel', function($view){
+            //Stats
+            $count['subject'] = Subject::count();
+            $count['topic'] = Topic::count();
+            $count['question'] = Question::where('is_approved', 1)->count();
+            $count['answer'] = Answer::where('is_approved', 1)->count();
+
+            //Highest Points
+            $topRankers = User::where('is_admin', 0)->whereNotNull('points')->orderBy('points', 'desc')->take(5)->get();
+
+            //Recent Questions
+            $recentQuestions = Question::where('is_approved', 1)->latest()->take(10)->get();
+
+            $view->with(['count'=>$count, 'toprankers'=>$topRankers, 'recentQuestions'=>$recentQuestions]);
+        });
     }
 }

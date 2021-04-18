@@ -225,14 +225,12 @@ jQuery(document).ready(function ($) {
             box_icon.find(".icon_i > span").hasClass("icon_square") ||
             box_icon.find(".icon_i > span").hasClass("icon_circle")
         ) {
-            box_icon
-                .find(".icon_i > span")
-                .css({
-                    height: icon_size + "px",
-                    width: icon_size + "px",
-                    "font-size": icon_size / 2 + "px",
-                    "line-height": icon_size + "px",
-                });
+            box_icon.find(".icon_i > span").css({
+                height: icon_size + "px",
+                width: icon_size + "px",
+                "font-size": icon_size / 2 + "px",
+                "line-height": icon_size + "px",
+            });
             box_icon
                 .find(".icon_i > span > span")
                 .css({ margin: 0, "text-align": "center" })
@@ -249,13 +247,11 @@ jQuery(document).ready(function ($) {
             ) {
                 var icon_size = 80;
             }
-            box_icon
-                .find(".box_text h3 > span")
-                .css({
-                    height: icon_size + "px",
-                    width: icon_size + "px",
-                    "line-height": icon_size + "px",
-                });
+            box_icon.find(".box_text h3 > span").css({
+                height: icon_size + "px",
+                width: icon_size + "px",
+                "line-height": icon_size + "px",
+            });
         } else {
             box_icon
                 .find(".icon_i > span i")
@@ -277,11 +273,9 @@ jQuery(document).ready(function ($) {
             ) {
                 box_icon.find(".box_text").css({ "padding-left": 41 + "px" });
             } else {
-                box_icon
-                    .find(".box_text")
-                    .css({
-                        "padding-left": parseFloat(icon_size / 2) + 15 + "px",
-                    });
+                box_icon.find(".box_text").css({
+                    "padding-left": parseFloat(icon_size / 2) + 15 + "px",
+                });
             }
 
             box_icon.find(".icon_i > span").addClass("f_left");
@@ -293,21 +287,17 @@ jQuery(document).ready(function ($) {
                 box_icon.find(".icon_i > span").hasClass("icon_square") ||
                 box_icon.find(".icon_i > span").hasClass("icon_circle")
             ) {
-                box_icon
-                    .find(".box_text")
-                    .css({
-                        "padding-right": parseFloat(icon_size) + 25 + "px",
-                    });
+                box_icon.find(".box_text").css({
+                    "padding-right": parseFloat(icon_size) + 25 + "px",
+                });
             } else if (
                 box_icon.find(".icon_i span[class^='icons']").length == 1
             ) {
                 box_icon.find(".box_text").css({ "padding-right": 41 + "px" });
             } else {
-                box_icon
-                    .find(".box_text")
-                    .css({
-                        "padding-right": parseFloat(icon_size / 2) + 15 + "px",
-                    });
+                box_icon.find(".box_text").css({
+                    "padding-right": parseFloat(icon_size / 2) + 15 + "px",
+                });
             }
 
             box_icon.find(".icon_i > span").addClass("f_right");
@@ -337,13 +327,11 @@ jQuery(document).ready(function ($) {
             .find(".icon_i > span")
             .attr("border_radius");
         if (border_radius != undefined) {
-            this_icon
-                .find(".icon_i > span")
-                .css({
-                    "-moz-border-radius": border_radius + "px",
-                    "-webkit-border-radius": border_radius + "px",
-                    "border-radius": border_radius + "px",
-                });
+            this_icon.find(".icon_i > span").css({
+                "-moz-border-radius": border_radius + "px",
+                "-webkit-border-radius": border_radius + "px",
+                "border-radius": border_radius + "px",
+            });
         }
 
         var border_color = this_icon
@@ -368,22 +356,18 @@ jQuery(document).ready(function ($) {
             .find(".icon_i > span")
             .attr("border_width");
         if (border_width != undefined) {
-            this_icon
-                .find(".icon_i > span")
-                .css({
-                    "border-width": border_width + "px",
-                    "border-style": "solid",
-                });
+            this_icon.find(".icon_i > span").css({
+                "border-width": border_width + "px",
+                "border-style": "solid",
+            });
         } else {
             var border_width = this_icon
                 .find(".box_text h3 > span")
                 .attr("border_width");
-            this_icon
-                .find(".box_text h3 > span")
-                .css({
-                    "border-width": border_width + "px",
-                    "border-style": "solid",
-                });
+            this_icon.find(".box_text h3 > span").css({
+                "border-width": border_width + "px",
+                "border-style": "solid",
+            });
         }
 
         this_icon.hover(
@@ -435,13 +419,11 @@ jQuery(document).ready(function ($) {
                     var button_border_hover = this_icon
                         .find(".button")
                         .attr("button_border_hover");
-                    this_icon
-                        .find(".button")
-                        .css({
-                            "background-color": button_background_hover,
-                            color: button_color_hover,
-                            "border-color": button_border_hover,
-                        });
+                    this_icon.find(".button").css({
+                        "background-color": button_background_hover,
+                        color: button_color_hover,
+                        "border-color": button_border_hover,
+                    });
                 }
             },
             function () {
@@ -486,13 +468,11 @@ jQuery(document).ready(function ($) {
                     var button_border = this_icon
                         .find(".button")
                         .attr("button_border");
-                    this_icon
-                        .find(".button")
-                        .css({
-                            "background-color": button_background,
-                            color: button_color,
-                            "border-color": button_border,
-                        });
+                    this_icon.find(".button").css({
+                        "background-color": button_background,
+                        color: button_color,
+                        "border-color": button_border,
+                    });
                 }
             }
         );
@@ -523,14 +503,12 @@ jQuery(document).ready(function ($) {
                 this_icon.find("> span").hasClass("icon_square") ||
                 this_icon.find("> span").hasClass("icon_circle")
             ) {
-                this_icon
-                    .find("> span")
-                    .css({
-                        height: icon_size + "px",
-                        width: icon_size + "px",
-                        "font-size": icon_size / 2 + "px",
-                        "line-height": icon_size + "px",
-                    });
+                this_icon.find("> span").css({
+                    height: icon_size + "px",
+                    width: icon_size + "px",
+                    "font-size": icon_size / 2 + "px",
+                    "line-height": icon_size + "px",
+                });
                 this_icon
                     .find("> span > span")
                     .css({ margin: 0, "text-align": "center" });
@@ -554,17 +532,15 @@ jQuery(document).ready(function ($) {
                 this_icon.find("> span").hasClass("icon_square") ||
                 this_icon.find("> span").hasClass("icon_circle")
             ) {
-                this_icon
-                    .find("> span")
-                    .css({
-                        "background-color": span_bg,
-                        "border-color": border_color,
-                        "border-width": border_width + "px",
-                        "border-style": "solid",
-                        "-moz-border-radius": border_radius + "px",
-                        "-webkit-border-radius": border_radius + "px",
-                        "border-radius": border_radius + "px",
-                    });
+                this_icon.find("> span").css({
+                    "background-color": span_bg,
+                    "border-color": border_color,
+                    "border-width": border_width + "px",
+                    "border-style": "solid",
+                    "-moz-border-radius": border_radius + "px",
+                    "-webkit-border-radius": border_radius + "px",
+                    "border-radius": border_radius + "px",
+                });
             }
             this_icon.find("> span i").css({ color: i_color });
 
@@ -575,12 +551,10 @@ jQuery(document).ready(function ($) {
                         this_icon.find("> span").hasClass("icon_square") ||
                         this_icon.find("> span").hasClass("icon_circle")
                     ) {
-                        this_icon
-                            .find("> span")
-                            .css({
-                                "background-color": span_hover,
-                                "border-color": border_hover,
-                            });
+                        this_icon.find("> span").css({
+                            "background-color": span_hover,
+                            "border-color": border_hover,
+                        });
                     }
                     this_icon.find("> span i").css({ color: i_hover });
                 },
@@ -590,12 +564,10 @@ jQuery(document).ready(function ($) {
                         this_icon.find("> span").hasClass("icon_square") ||
                         this_icon.find("> span").hasClass("icon_circle")
                     ) {
-                        this_icon
-                            .find("> span")
-                            .css({
-                                "background-color": span_bg,
-                                "border-color": border_color,
-                            });
+                        this_icon.find("> span").css({
+                            "background-color": span_bg,
+                            "border-color": border_color,
+                        });
                     }
                     this_icon.find("> span i").css({ color: i_color });
                 }
@@ -839,14 +811,12 @@ jQuery(document).ready(function ($) {
             ul_list.hasClass("ul_list_circle") ||
             ul_list.hasClass("ul_list_square")
         ) {
-            ul_list
-                .find("ul li i")
-                .css({
-                    "background-color": list_background,
-                    "-moz-border-radius": list_border_radius + "px",
-                    "-webkit-border-radius": list_border_radius + "px",
-                    "border-radius": list_border_radius + "px",
-                });
+            ul_list.find("ul li i").css({
+                "background-color": list_background,
+                "-moz-border-radius": list_border_radius + "px",
+                "-webkit-border-radius": list_border_radius + "px",
+                "border-radius": list_border_radius + "px",
+            });
             ul_list.find("ul li").hover(
                 function () {
                     jQuery(this)
@@ -981,16 +951,14 @@ jQuery(document).ready(function ($) {
         var client_color = testimonial.attr("client_color");
         var jop_color = testimonial.attr("jop_color");
 
-        testimonial
-            .find(".testimonial")
-            .css({
-                "background-color": testimonial_background,
-                color: testimonial_color,
-                "border-color": testimonial_border,
-                "-moz-border-radius": border_radius + "px",
-                "-webkit-border-radius": border_radius + "px",
-                "border-radius": border_radius + "px",
-            });
+        testimonial.find(".testimonial").css({
+            "background-color": testimonial_background,
+            color: testimonial_color,
+            "border-color": testimonial_border,
+            "-moz-border-radius": border_radius + "px",
+            "-webkit-border-radius": border_radius + "px",
+            "border-radius": border_radius + "px",
+        });
         testimonial.find(".testimonial a").css({ color: testimonial_color });
         testimonial
             .find(".testimonial-f-arrow")
@@ -1072,86 +1040,86 @@ jQuery(document).ready(function ($) {
 
     /* Ask Question */
 
-    jQuery(".publish-question").click(function () {
-        var question_title = jQuery("#question_title").val();
-        jQuery.post("ask_question.html", question_title, function () {
-            window.location.href =
-                "ask_question.html?question_title=" + question_title;
-            jQuery("#question-title").val(question_title);
-        });
-        return false;
-    });
+    // jQuery(".publish-question").click(function () {
+    //     var question_title = jQuery("#question_title").val();
+    //     jQuery.post("ask_question.html", question_title, function () {
+    //         window.location.href =
+    //             "ask_question.html?question_title=" + question_title;
+    //         jQuery("#question-title").val(question_title);
+    //     });
+    //     return false;
+    // });
 
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results == null
-            ? ""
-            : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
+    // function getParameterByName(name) {
+    //     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    //     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    //         results = regex.exec(location.search);
+    //     return results == null
+    //         ? ""
+    //         : decodeURIComponent(results[1].replace(/\+/g, " "));
+    // }
 
-    jQuery("#question-title").val(getParameterByName("question_title"));
+    // jQuery("#question-title").val(getParameterByName("question_title"));
 
-    jQuery("#question_tags").tag();
+    // jQuery("#question_tags").tag();
 
-    var question_poll = jQuery("#question_poll:checked").length;
-    if (question_poll == 1) {
-        jQuery(".poll_options").slideDown(500);
-    } else {
-        jQuery(".poll_options").slideUp(500);
-    }
+    // var question_poll = jQuery("#question_poll:checked").length;
+    // if (question_poll == 1) {
+    //     jQuery(".poll_options").slideDown(500);
+    // } else {
+    //     jQuery(".poll_options").slideUp(500);
+    // }
 
-    jQuery("#question_poll").click(function () {
-        var question_poll_c = jQuery("#question_poll:checked").length;
-        if (question_poll_c == 1) {
-            jQuery(".poll_options").slideDown(500);
-        } else {
-            jQuery(".poll_options").slideUp(500);
-        }
-    });
+    // jQuery("#question_poll").click(function () {
+    //     var question_poll_c = jQuery("#question_poll:checked").length;
+    //     if (question_poll_c == 1) {
+    //         jQuery(".poll_options").slideDown(500);
+    //     } else {
+    //         jQuery(".poll_options").slideUp(500);
+    //     }
+    // });
 
-    if (jQuery("#question_poll_item").length) {
-        jQuery("#question_poll_item").sortable({
-            placeholder: "ui-state-highlight",
-        });
-    }
+    // if (jQuery("#question_poll_item").length) {
+    //     jQuery("#question_poll_item").sortable({
+    //         placeholder: "ui-state-highlight",
+    //     });
+    // }
 
-    jQuery("#add_poll").click(function () {
-        jQuery("#question_poll_item").append(
-            '<li id="poll_li_' +
-                nextli +
-                '"><div class="poll-li"><p><input id="ask[' +
-                nextli +
-                '][title]" class="ask" name="ask[' +
-                nextli +
-                '][title]" value="" type="text"></p><input id="ask[' +
-                nextli +
-                '][value]" name="ask[' +
-                nextli +
-                '][value]" value="" type="hidden"><input id="ask[' +
-                nextli +
-                '][id]" name="ask[' +
-                nextli +
-                '][id]" value="' +
-                nextli +
-                '" type="hidden"><div class="del-poll-li"><i class="icon-remove"></i></div><div class="move-poll-li"><i class="icon-fullscreen"></i></div></div></li>'
-        );
-        jQuery("#poll_li_" + nextli)
-            .hide()
-            .fadeIn();
-        nextli++;
-        jQuery(".del-poll-li").click(function () {
-            jQuery(this)
-                .parent()
-                .parent()
-                .addClass("removered")
-                .fadeOut(function () {
-                    jQuery(this).remove();
-                });
-        });
-        return false;
-    });
+    // jQuery("#add_poll").click(function () {
+    //     jQuery("#question_poll_item").append(
+    //         '<li id="poll_li_' +
+    //             nextli +
+    //             '"><div class="poll-li"><p><input id="ask[' +
+    //             nextli +
+    //             '][title]" class="ask" name="ask[' +
+    //             nextli +
+    //             '][title]" value="" type="text"></p><input id="ask[' +
+    //             nextli +
+    //             '][value]" name="ask[' +
+    //             nextli +
+    //             '][value]" value="" type="hidden"><input id="ask[' +
+    //             nextli +
+    //             '][id]" name="ask[' +
+    //             nextli +
+    //             '][id]" value="' +
+    //             nextli +
+    //             '" type="hidden"><div class="del-poll-li"><i class="icon-remove"></i></div><div class="move-poll-li"><i class="icon-fullscreen"></i></div></div></li>'
+    //     );
+    //     jQuery("#poll_li_" + nextli)
+    //         .hide()
+    //         .fadeIn();
+    //     nextli++;
+    //     jQuery(".del-poll-li").click(function () {
+    //         jQuery(this)
+    //             .parent()
+    //             .parent()
+    //             .addClass("removered")
+    //             .fadeOut(function () {
+    //                 jQuery(this).remove();
+    //             });
+    //     });
+    //     return false;
+    // });
 
     /* single question */
 
@@ -1244,53 +1212,53 @@ jQuery(document).ready(function ($) {
 
     /* Contact us */
 
-    jQuery(".form-js").submit(function () {
-        var thisform = jQuery(this);
-        jQuery(".required-error", thisform).remove();
-        var name = jQuery("#name").val();
-        var mail = jQuery("#mail").val();
-        var url = jQuery("#url").val();
-        var message = jQuery("#message").val();
-        var data = { name: name, mail: mail, url: url, message: message };
-        if (name == "") {
-            jQuery("#name").after(
-                '<span class="form-description required-error">Please fill the required field.</span>'
-            );
-        } else {
-            jQuery("#name").parent().find(".required-error").remove();
-        }
-        if (mail == "") {
-            jQuery("#mail").after(
-                '<span class="form-description required-error">Please fill the required field.</span>'
-            );
-        } else {
-            jQuery("#mail").parent().find(".required-error").remove();
-        }
-        if (message == "") {
-            jQuery("#message").after(
-                '<span class="form-description required-error">Please fill the required field.</span>'
-            );
-        } else {
-            jQuery("#message").parent().find(".required-error").remove();
-        }
+    // jQuery(".form-js").submit(function () {
+    //     var thisform = jQuery(this);
+    //     jQuery(".required-error", thisform).remove();
+    //     var name = jQuery("#name").val();
+    //     var mail = jQuery("#mail").val();
+    //     var url = jQuery("#url").val();
+    //     var message = jQuery("#message").val();
+    //     var data = { name: name, mail: mail, url: url, message: message };
+    //     if (name == "") {
+    //         jQuery("#name").after(
+    //             '<span class="form-description required-error">Please fill the required field.</span>'
+    //         );
+    //     } else {
+    //         jQuery("#name").parent().find(".required-error").remove();
+    //     }
+    //     if (mail == "") {
+    //         jQuery("#mail").after(
+    //             '<span class="form-description required-error">Please fill the required field.</span>'
+    //         );
+    //     } else {
+    //         jQuery("#mail").parent().find(".required-error").remove();
+    //     }
+    //     if (message == "") {
+    //         jQuery("#message").after(
+    //             '<span class="form-description required-error">Please fill the required field.</span>'
+    //         );
+    //     } else {
+    //         jQuery("#message").parent().find(".required-error").remove();
+    //     }
 
-        if (name != "" && mail != "" && message != "") {
-            jQuery.post("contact_us.php", data, function (result) {
-                if (result == "done") {
-                    thisform.prepend(
-                        "<div class='alert-message success'><i class='icon-ok'></i><p><span>Thank you " +
-                            name +
-                            "!</span><br> We'll be in touch real soon .</p></div>"
-                    );
-                    jQuery("#name").val("");
-                    jQuery("#mail").val("");
-                    jQuery("#url").val("");
-                    jQuery("#message").val("");
-                }
-            });
-        }
-        return false;
-    });
+    //     if (name != "" && mail != "" && message != "") {
+    //         jQuery.post("contact_us.php", data, function (result) {
+    //             if (result == "done") {
+    //                 thisform.prepend(
+    //                     "<div class='alert-message success'><i class='icon-ok'></i><p><span>Thank you " +
+    //                         name +
+    //                         "!</span><br> We'll be in touch real soon .</p></div>"
+    //                 );
+    //                 jQuery("#name").val("");
+    //                 jQuery("#mail").val("");
+    //                 jQuery("#url").val("");
+    //                 jQuery("#message").val("");
+    //             }
+    //         });
+    //     }
+    //     return false;
+    // });
 
     /* Widget Menu jQuery */
 
@@ -1494,50 +1462,50 @@ jQuery(document).ready(function ($) {
 
     /* Twitter */
 
-    jQuery(".tweet_1").tweet({
-        join_text: false,
-        username: "envato", // Username
-        modpath: "./js/twitter/",
-        avatar_size: false,
-        count: 2,
-        template: "{text} <br> {time}",
-        loading_text: "loading twitter feed...",
-        seconds_ago_text: "about %d seconds ago",
-        a_minutes_ago_text: "about a minute ago",
-        minutes_ago_text: "about %d minutes ago",
-        a_hours_ago_text: "about an hour ago",
-        hours_ago_text: "about %d hours ago",
-        a_day_ago_text: "about a day ago",
-        days_ago_text: "about %d days ago",
-        view_text: "view tweet on twitter",
-    });
+    // jQuery(".tweet_1").tweet({
+    //     join_text: false,
+    //     username: "envato", // Username
+    //     modpath: "./js/twitter/",
+    //     avatar_size: false,
+    //     count: 2,
+    //     template: "{text} <br> {time}",
+    //     loading_text: "loading twitter feed...",
+    //     seconds_ago_text: "about %d seconds ago",
+    //     a_minutes_ago_text: "about a minute ago",
+    //     minutes_ago_text: "about %d minutes ago",
+    //     a_hours_ago_text: "about an hour ago",
+    //     hours_ago_text: "about %d hours ago",
+    //     a_day_ago_text: "about a day ago",
+    //     days_ago_text: "about %d days ago",
+    //     view_text: "view tweet on twitter",
+    // });
 
-    jQuery(".tweet_2").tweet({
-        join_text: false,
-        username: "envato", // Username
-        modpath: "./js/twitter/",
-        avatar_size: false,
-        count: 2,
-        template: "{text} <br> {time}",
-        loading_text: "loading twitter feed...",
-        seconds_ago_text: "about %d seconds ago",
-        a_minutes_ago_text: "about a minute ago",
-        minutes_ago_text: "about %d minutes ago",
-        a_hours_ago_text: "about an hour ago",
-        hours_ago_text: "about %d hours ago",
-        a_day_ago_text: "about a day ago",
-        days_ago_text: "about %d days ago",
-        view_text: "view tweet on twitter",
-    });
+    // jQuery(".tweet_2").tweet({
+    //     join_text: false,
+    //     username: "envato", // Username
+    //     modpath: "./js/twitter/",
+    //     avatar_size: false,
+    //     count: 2,
+    //     template: "{text} <br> {time}",
+    //     loading_text: "loading twitter feed...",
+    //     seconds_ago_text: "about %d seconds ago",
+    //     a_minutes_ago_text: "about a minute ago",
+    //     minutes_ago_text: "about %d minutes ago",
+    //     a_hours_ago_text: "about an hour ago",
+    //     hours_ago_text: "about %d hours ago",
+    //     a_day_ago_text: "about a day ago",
+    //     days_ago_text: "about %d days ago",
+    //     view_text: "view tweet on twitter",
+    // });
 
     /* Flickr */
 
-    jQuery(".flickr_1").jflickrfeed({
-        limit: 12,
-        qstrings: {
-            id: "99771506@N00", // Go to http://idgettr.com/ to find ID.
-        },
-        itemTemplate:
-            '<a href="{{link}}" title="{{title}}" target="_blank"><img src="{{image_m}}" alt="{{title}}"></a>',
-    });
+    // jQuery(".flickr_1").jflickrfeed({
+    //     limit: 12,
+    //     qstrings: {
+    //         id: "99771506@N00", // Go to http://idgettr.com/ to find ID.
+    //     },
+    //     itemTemplate:
+    //         '<a href="{{link}}" title="{{title}}" target="_blank"><img src="{{image_m}}" alt="{{title}}"></a>',
+    // });
 });

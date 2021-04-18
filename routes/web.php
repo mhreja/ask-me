@@ -20,8 +20,15 @@ Route::view('contact', 'frontend.contact')->name('contact');
 
 
 Route::middleware(['auth:sanctum', 'user'])->group(function(){
+	//Mini Ask Now
+	Route::post('ask/question', 'AskQuestionController@miniask')->name('askquestion.miniask');
+
+	//Main Ask Now
 	Route::get('ask/question/new', 'AskQuestionController@index')->name('askquestion.index');
+	Route::get('ask/question/get-topics/{subject}', 'AskQuestionController@gettopics')->name('getTopics');
 	Route::post('ask/question/new', 'AskQuestionController@store')->name('askquestion.store');
+
+	//My Profile
 	Route::view('my-profile', 'frontend.myprofile')->name('myprofile.show');
 });
 
@@ -33,7 +40,6 @@ Route::middleware(['auth:sanctum','admin'])->prefix('admin')->group(function(){
 	Route::get('dashboard','AdminDashboardController@index')->name('dashboard');
 
 	Route::view('subjects', 'admin.Subjects.index')->name('subjects');
-	Route::resource('topics', 'TopicsController');
-
+	Route::view('topics', 'admin.Topics.index')->name('topics');
 	
 });

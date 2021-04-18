@@ -4,26 +4,31 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Subject;
+use App\Models\Topic;
 use Illuminate\Support\Str;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
-class SubjectsTable extends LivewireDatatable
+class TopicsTable extends LivewireDatatable
 {
-    public $model = Subject::class;
+    protected $listeners = ['topicAdded'=>'columns'];
 
-    protected $listeners = ['subjectAdded'=>'columns'];
     // public $exportable = true;
-    public $searchable = "subject";
     public $hideable = 'select';
+
+    public function builder()
+    {
+        return Topic::query()->leftJoin('subjects', 'subjects.id', 'topics.subject_id');
+    }
 
     public function columns()
     {
         return [
             NumberColumn::name('id')->label('ID'),
-            Column::name('subject')->label('subject')->editable(),
+            Column::name('subjects.subject')->label('subject')->searchable(),
+            Column::name('topic')->label('Topic')->searchable()->editable(),
             DateColumn::name('created_at')->label('Added On'),
             Column::delete()->label('Delete')->alignRight()           
 

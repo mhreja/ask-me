@@ -13,6 +13,9 @@
     <!-- Main Style -->
     <link rel="stylesheet" href="{{asset('mhreja/assets/css/style.css')}}">
 
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="{{asset('mhreja/assets/css/custom.css')}}">
+
     <!-- Skins -->
     <link rel="stylesheet" href="{{asset('mhreja/assets/css/skins/skins.css')}}">
 
@@ -25,6 +28,7 @@
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{asset('mhreja/assets/images/favicon.png')}}">
 
+    @livewireStyles
     @yield('head')
 
 
@@ -66,7 +70,7 @@
     <script src="{{asset('mhreja/assets/js/custom.js')}}"></script>
     <script src="{{asset('mhreja/assets/js/sweetalert.js')}}"></script>
     <script src="{{asset('mhreja/assets/js/toastr.js')}}"></script>
-
+    @livewireScripts
     @include('frontend.layouts.alerts')
 
     @yield('scripts')

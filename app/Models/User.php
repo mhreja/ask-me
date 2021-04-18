@@ -34,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'preparing_exams_for',
         'class',
         'city',
+        'points',
         'password',
     ];
 
@@ -66,4 +67,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function questions(){
+        return $this->hasMany(Question::class);
+    }
+
+    public function answers(){
+        return $this->hasMany(Answer::class);
+    }
 }

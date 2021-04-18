@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Subject;
+use App\Models\Topic;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SubjectFactory extends Factory
+class TopicFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Subject::class;
+    protected $model = Topic::class;
 
     /**
      * Define the model's default state.
@@ -21,8 +21,10 @@ class SubjectFactory extends Factory
      */
     public function definition()
     {
+        $subjectId = rand(1,5);
         return [
-            'subject' => $this->faker->name(),
+            'subject_id' => $subjectId,
+            'topic' => $this->faker->name(),
         ];
     }
 }
