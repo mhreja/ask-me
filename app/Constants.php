@@ -5,6 +5,6 @@
  * @author Md Hossain Reja
  */
 define('ADMIN_ANSWERED', 'Admin Answered');
-define('ADMIN_MARKED_CORRECT_ANSWER', 'Admin Marked Correct Answer');
+define('ADMIN_MARKED_CORRECT_ANSWER', 'Correct Answer Marked');
 
 ?>
