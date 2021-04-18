@@ -21,13 +21,15 @@
                     @endauth
                 </div>
                 <div class="col-md-9">
-                    <form class="form-style form-style-2">
+                    <form action="{{route('askquestion.miniask')}}" method="POST" class="form-style form-style-2">
+                        @csrf
                         <p>
-                            <textarea rows="4" id="question_title"
-                                onfocus="if(this.value=='Ask any question and you be sure find your answer ?')this.value='';"
-                                onblur="if(this.value=='')this.value='Ask any question and you be sure find your answer ?';">Ask any question and you be sure find your answer ?</textarea>
+                            <textarea name="question" rows="4"
+                                onfocus="if(this.value=='Ask any question you have and get the best answer...')this.value='';"
+                                onblur="if(this.value=='')this.value='Ask any question you have and get the best answer...';"
+                                placeholder="Ask any question you have and get the best answer..."></textarea>
                             <i class="icon-pencil"></i>
-                            <span class="color button small publish-question">Ask Now</span>
+                            <button type="submit" class="color button small publish-question">Ask Now</button>
                         </p>
                     </form>
                 </div>

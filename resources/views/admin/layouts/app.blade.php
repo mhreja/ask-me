@@ -83,8 +83,8 @@
                         <h6 class="collapse-header">Subjects BREAD :</h6>
                         <a class="collapse-item @if(in_array(Route::current()->getName(), ['subjects'])) active @endif"
                             href="{{route('subjects')}}">Subjects</a>
-                        <a class="collapse-item @if(in_array(Route::current()->getName(), ['topics.index', 'topics.edit'])) active @endif"
-                            href="{{route('topics.index')}}">Topics</a>
+                        <a class="collapse-item @if(in_array(Route::current()->getName(), ['topics'])) active @endif"
+                            href="{{route('topics')}}">Topics</a>
                     </div>
                 </div>
             </li>

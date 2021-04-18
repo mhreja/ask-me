@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Subjects')
+@section('title', 'Topics')
 
 @section('head')
 @endsection
@@ -11,15 +11,15 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Subjects</h1>
+        <h1 class="h3 mb-0 text-gray-800">Topics</h1>
     </div>
 
-
-    @livewire('add-subject')
+    @livewire('add-topic')
 
     <div class="my-5">
-        @livewire('subjects-table')
+        @livewire('topics-table')
     </div>
+
 
 </div>
 @endsection
