@@ -3,7 +3,7 @@
 @section('title', 'Recent Questions')
 
 @section('head')
-<link rel="stylesheet" href="{{asset('css/app.css')}}">
+
 @endsection
 
 
