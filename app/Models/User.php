@@ -31,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'dob',
         'is_admin',
         'user_type',
-        'preparing_exams_for',
+        'interested_exam',
         'class',
         'city',
         'points',

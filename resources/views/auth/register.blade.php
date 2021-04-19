@@ -62,8 +62,8 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label>Preparing for?</label>
-                        <input type="text" name="preparing_exams_for" value="{{old('preparing_exams_for')}}"
+                        <label>Interested Exam</label>
+                        <input type="text" name="interested_exam" value="{{old('interested_exam')}}"
                             placeholder="Exam Name">
                     </div>
                     <div class="col-md-4">
@@ -86,7 +86,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label>Email <span>*</span></label>
-                        <input type="text" name="email" value="{{old('email')}}" placeholder="john@mail.com">
+                        <input type="text" name="email" value="{{old('email')}}" maxlength="10"
+                            placeholder="john@mail.com">
                     </div>
                     <div class="col-md-4">
                         <label>Mobile <span>*</span></label>

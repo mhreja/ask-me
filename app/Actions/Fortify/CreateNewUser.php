@@ -21,7 +21,7 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'register_as' => ['required', 'integer', 'min:1', 'max:2'],
-            'preparing_exams_for' => ['nullable', 'string', 'max:255'],
+            'interested_exam' => ['nullable', 'string', 'max:255'],
             'class' => ['nullable', 'string', 'max:255'],
             'dob' => ['nullable', 'date'],
             'city' => ['nullable', 'string', 'max:255'],
@@ -44,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
 
         return User::create([
             'user_type' => $user_type,
-            'preparing_exams_for' => $input['preparing_exams_for'],
+            'interested_exam' => $input['interested_exam'],
             'class' => $input['class'],
             'name' => $input['name'],
             'dob' => $input['dob'],
