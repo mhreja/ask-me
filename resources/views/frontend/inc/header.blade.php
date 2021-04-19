@@ -10,16 +10,18 @@
                 <li
                     class="ask_question {{Request::route()->getName()=='askquestion.index' ? 'current_page_item' : ''}}">
                     <a href="{{route('askquestion.index')}}">
+
+                        Ask Question
                         <img src="{{asset('mhreja/assets/images/mypen.svg')}}" style="display: inline;" width="32px"
                             height="32px">
-                        Ask Question
                     </a>
                 </li>
-                <li><a href="cat_question.html">Questions</a>
+                <li><a href="javascript:void(0)">Questions</a>
                     <ul>
-                        <li><a href="cat_question.html">Questions Category</a></li>
-                        <li><a href="single_question.html">Question Single</a></li>
-                        <li><a href="single_question_poll.html">Poll Question Single</a></li>
+                        <li><a href="{{route('recentquestions')}}">Recent Questions</a></li>
+                        <li><a href="{{route('popularquestions')}}">Popular Questions</a></li>
+                        <li><a href="{{route('mostansweredquestions')}}">Most Answered</a></li>
+                        <li><a href="{{route('notansweredquestions')}}">Not Answered</a></li>
                     </ul>
                 </li>
                 <li
@@ -41,7 +43,7 @@
                         <li class="{{Request::route()->getName()=='myprofile.show' ? 'current_page_item' : ''}}">
                             <a href="{{route('myprofile.show')}}">My Profile</a>
                         </li>
-                        <li><a href="user_questions.html">My Questions</a></li>
+                        <li><a href="{{route('my-questions')}}">My Questions</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

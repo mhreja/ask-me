@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
             $topRankers = User::where('is_admin', 0)->whereNotNull('points')->orderBy('points', 'desc')->take(5)->get();
 
             //Recent Questions
-            $recentQuestions = Question::where('is_approved', 1)->latest()->take(10)->get();
+            $recentQuestions = Question::where('is_approved', 1)->latest()->take(5)->get();
 
             $view->with(['count'=>$count, 'toprankers'=>$topRankers, 'recentQuestions'=>$recentQuestions]);
         });

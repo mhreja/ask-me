@@ -18,6 +18,11 @@ Route::get('/', 'WelcomeController@index')->name('home');
 Route::view('about', 'frontend.about')->name('about');
 Route::view('contact', 'frontend.contact')->name('contact');
 
+//Questions
+Route::get('questions/recent', 'WelcomeController@recentquestions')->name('recentquestions');
+Route::get('questions/popular', 'WelcomeController@popularquestions')->name('popularquestions');
+Route::get('questions/most-answered', 'WelcomeController@mostansweredquestions')->name('mostansweredquestions');
+Route::get('questions/not-answered', 'WelcomeController@notansweredquestions')->name('notansweredquestions');
 
 Route::middleware(['auth:sanctum', 'user'])->group(function(){
 	//Mini Ask Now
@@ -27,6 +32,9 @@ Route::middleware(['auth:sanctum', 'user'])->group(function(){
 	Route::get('ask/question/new', 'AskQuestionController@index')->name('askquestion.index');
 	Route::get('ask/question/get-topics/{subject}', 'AskQuestionController@gettopics')->name('getTopics');
 	Route::post('ask/question/new', 'AskQuestionController@store')->name('askquestion.store');
+
+	//My Questions
+	Route::get('my-questions', 'WelcomeController@myquestions')->name('my-questions');
 
 	//My Profile
 	Route::view('my-profile', 'frontend.myprofile')->name('myprofile.show');
