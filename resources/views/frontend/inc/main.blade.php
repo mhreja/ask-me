@@ -14,7 +14,7 @@
                         @forelse($recentQuestions as $item)
                         <article class="question question-type-normal">
                             <h2>
-                                <a href="#">{{$item->title}}</a>
+                                <a href="#">{{ Str::limit($item->title, 85,'...') }}</a>
                             </h2>
                             <a class="question-report" href="{{route('contact')}}">Report</a>
                             <div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
@@ -26,7 +26,7 @@
                             <div class="question-inner">
                                 <div class="clearfix"></div>
                                 <div class="questiondescription">
-                                    {!! $item->details !!}
+                                    {!! Str::limit($item->details, 420,'...') !!}
                                 </div>
                                 <div class="question-details">
                                     @if($item->has_admin_answered == true)
@@ -39,7 +39,8 @@
                                     </span>
                                     @endif
 
-                                    @livewire('like-dislike', [
+                                    @livewire('question-voting', [
+                                    'questionId'=>$item->id,
                                     'upvotes'=>$item->upvotes,
                                     'downvotes'=>$item->downvotes
                                     ])
@@ -64,7 +65,8 @@
                         @endforelse
 
                         @if($recentQuestions->count() > 0)
-                        <a href="#" class="load-questions"><i class="icon-circle-arrow-right"></i>View More Recent
+                        <a href="{{route('recentquestions')}}" class="load-questions"><i
+                                class="icon-circle-arrow-right"></i>View More Recent
                             Questions</a>
                         @endif
                     </div>
@@ -74,7 +76,7 @@
                         @forelse($mostPopularQuestions as $item)
                         <article class="question question-type-normal">
                             <h2>
-                                <a href="#">{{$item->title}}</a>
+                                <a href="#">{{ Str::limit($item->title, 85,'...') }}</a>
                             </h2>
                             <a class="question-report" href="{{route('contact')}}">Report</a>
                             <div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
@@ -86,7 +88,7 @@
                             <div class="question-inner">
                                 <div class="clearfix"></div>
                                 <div class="questiondescription">
-                                    {!! $item->details !!}
+                                    {!! Str::limit($item->details, 420,'...') !!}
                                 </div>
                                 <div class="question-details">
                                     @if($item->has_admin_answered == true)
@@ -99,7 +101,8 @@
                                     </span>
                                     @endif
 
-                                    @livewire('like-dislike', [
+                                    @livewire('question-voting', [
+                                    'questionId'=>$item->id,
                                     'upvotes'=>$item->upvotes,
                                     'downvotes'=>$item->downvotes
                                     ])
@@ -124,7 +127,8 @@
                         @endforelse
 
                         @if($mostPopularQuestions->count() > 0)
-                        <a href="#" class="load-questions"><i class="icon-circle-arrow-right"></i>View More Popular
+                        <a href="{{route('popularquestions')}}" class="load-questions"><i
+                                class="icon-circle-arrow-right"></i>View More Popular
                             Questions</a>
                         @endif
                     </div>
@@ -134,7 +138,7 @@
                         @forelse($mostAnsweredQuestions as $item)
                         <article class="question question-type-normal">
                             <h2>
-                                <a href="#">{{$item->title}}</a>
+                                <a href="#">{{ Str::limit($item->title, 85,'...') }}</a>
                             </h2>
                             <a class="question-report" href="{{route('contact')}}">Report</a>
                             <div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
@@ -146,7 +150,7 @@
                             <div class="question-inner">
                                 <div class="clearfix"></div>
                                 <div class="questiondescription">
-                                    {!! $item->details !!}
+                                    {!! Str::limit($item->details, 420,'...') !!}
                                 </div>
                                 <div class="question-details">
                                     @if($item->has_admin_answered == true)
@@ -159,7 +163,8 @@
                                     </span>
                                     @endif
 
-                                    @livewire('like-dislike', [
+                                    @livewire('question-voting', [
+                                    'questionId'=>$item->id,
                                     'upvotes'=>$item->upvotes,
                                     'downvotes'=>$item->downvotes
                                     ])
@@ -184,7 +189,8 @@
                         @endforelse
 
                         @if($mostAnsweredQuestions->count() > 0)
-                        <a href="#" class="load-questions"><i class="icon-circle-arrow-right"></i>View More Most
+                        <a href="{{route('mostansweredquestions')}}" class="load-questions"><i
+                                class="icon-circle-arrow-right"></i>View More Most
                             Answered Questions</a>
                         @endif
                     </div>
@@ -194,7 +200,7 @@
                         @forelse($notAnsweredQuestions as $item)
                         <article class="question question-type-normal">
                             <h2>
-                                <a href="#">{{$item->title}}</a>
+                                <a href="#">{{ Str::limit($item->title, 85,'...') }}</a>
                             </h2>
                             <a class="question-report" href="{{route('contact')}}">Report</a>
                             <div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
@@ -206,7 +212,7 @@
                             <div class="question-inner">
                                 <div class="clearfix"></div>
                                 <div class="questiondescription">
-                                    {!! $item->details !!}
+                                    {!! Str::limit($item->details, 420,'...') !!}
                                 </div>
                                 <div class="question-details">
                                     @if($item->has_admin_answered == true)
@@ -219,7 +225,8 @@
                                     </span>
                                     @endif
 
-                                    @livewire('like-dislike', [
+                                    @livewire('question-voting', [
+                                    'questionId'=>$item->id,
                                     'upvotes'=>$item->upvotes,
                                     'downvotes'=>$item->downvotes
                                     ])
@@ -244,7 +251,8 @@
                         @endforelse
 
                         @if($notAnsweredQuestions->count() > 0)
-                        <a href="#" class="load-questions"><i class="icon-circle-arrow-right"></i>View More Unanswered
+                        <a href="{{route('notansweredquestions')}}" class="load-questions"><i
+                                class="icon-circle-arrow-right"></i>View More Unanswered
                             Questions</a>
                         @endif
                     </div>

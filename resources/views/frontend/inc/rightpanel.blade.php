@@ -29,13 +29,13 @@
     </div>
     @endif
 
-    @if($recentQuestions->count() > 0)
+    @if($recentQuestions->count() > 0 && Route::current()->getName() != 'home')
     <div class="widget">
         <h3 class="widget_title">Recent Questions</h3>
         <ul class="related-posts">
             @foreach ($recentQuestions as $item)
             <li class="related-item">
-                <h3><a href="#">{{$item->title}}</a></h3>
+                <h3><a href="#">{{ Str::limit($item->title, 75,'...') }}</a></h3>
                 <div class="clear"></div><span>{{$item->created_at->diffForHumans()}}</span>
             </li>
             @endforeach
