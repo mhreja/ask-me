@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-md-4">
                         <label>Mobile <span>*</span></label>
-                        <input type="texl" name="mobile" value="{{old('mobile')}}" maxlength="10"
+                        <input type="text" name="mobile" value="{{old('mobile')}}" maxlength="10"
                             placeholder="9732***000">
                     </div>
                     <div class="col-md-4">
