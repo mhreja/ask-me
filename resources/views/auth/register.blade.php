@@ -86,12 +86,12 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label>Email <span>*</span></label>
-                        <input type="text" name="email" value="{{old('email')}}" maxlength="10"
-                            placeholder="john@mail.com">
+                        <input type="text" name="email" value="{{old('email')}}" placeholder="john@mail.com">
                     </div>
                     <div class="col-md-4">
                         <label>Mobile <span>*</span></label>
-                        <input type="text" name="mobile" value="{{old('mobile')}}" placeholder="9732***000">
+                        <input type="texl" name="mobile" value="{{old('mobile')}}" maxlength="10"
+                            placeholder="9732***000">
                     </div>
                     <div class="col-md-4">
                         <label>Username <span>*</span></label>
