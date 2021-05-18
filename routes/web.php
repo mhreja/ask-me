@@ -24,6 +24,19 @@ Route::get('questions/popular', 'WelcomeController@popularquestions')->name('pop
 Route::get('questions/most-answered', 'WelcomeController@mostansweredquestions')->name('mostansweredquestions');
 Route::get('questions/not-answered', 'WelcomeController@notansweredquestions')->name('notansweredquestions');
 
+//Subject Question
+Route::get('questions/subject/{subject}', 'WelcomeController@subjectQuestions')->name('subjectQuestions');
+
+//Topic Question
+Route::get('questions/topic/{topic}', 'WelcomeController@topicQuestions')->name('topicQuestions');
+
+//Searched Question
+Route::get('questions/search', 'WelcomeController@searchedQuestions')->name('searchedQuestions');
+
+//Question Inner Page
+Route::get('question/{question}', 'WelcomeController@questionInner')->name('questionInner');
+
+
 Route::middleware(['auth:sanctum', 'user'])->group(function(){
 	//Mini Ask Now
 	Route::post('ask/question', 'AskQuestionController@miniask')->name('askquestion.miniask');
@@ -32,6 +45,9 @@ Route::middleware(['auth:sanctum', 'user'])->group(function(){
 	Route::get('ask/question/new', 'AskQuestionController@index')->name('askquestion.index');
 	Route::get('ask/question/get-topics/{subject}', 'AskQuestionController@gettopics')->name('getTopics');
 	Route::post('ask/question/new', 'AskQuestionController@store')->name('askquestion.store');
+
+	//Answer Post
+	Route::post('answer/submit', 'AskQuestionController@answerstore')->name('storeAnswer');
 
 	//My Questions
 	Route::get('my-questions', 'WelcomeController@myquestions')->name('my-questions');

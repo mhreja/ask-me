@@ -20,8 +20,9 @@
             </ul>
         </nav>
         <div class="header-search">
-            <form>
-                <input type="text" value="Search here ..." onfocus="if(this.value=='Search here ...')this.value='';"
+            <form action="{{route('searchedQuestions')}}" method="GET">
+                <input type="text" name="keyword" value="Search here ..."
+                    onfocus="if(this.value=='Search here ...')this.value='';"
                     onblur="if(this.value=='')this.value='Search here ...';">
                 <button type="submit" class="search-submit"></button>
             </form>

@@ -35,7 +35,7 @@
         <ul class="related-posts">
             @foreach ($recentQuestions as $item)
             <li class="related-item">
-                <h3><a href="#">{{ Str::limit($item->title, 75,'...') }}</a></h3>
+                <h3><a href="{{route('questionInner', $item->id)}}">{{ Str::limit($item->title, 75,'...') }}</a></h3>
                 <div class="clear"></div><span>{{$item->created_at->diffForHumans()}}</span>
             </li>
             @endforeach
