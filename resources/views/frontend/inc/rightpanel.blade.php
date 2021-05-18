@@ -21,7 +21,7 @@
                     <a href="javascript:void()"><img width="60" height="60" src="{{$user->profile_photo_url}}"
                             alt=""></a>
                 </div>
-                <h6><a href="javascript:void()">{{$user->username}}</a></h6>
+                <h6><a href="javascript:void()">{{$user->name}}</a></h6>
                 <span class="comment">{{$user->points}} Points</span>
             </li>
             @endforeach
