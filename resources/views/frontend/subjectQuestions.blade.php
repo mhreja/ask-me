@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Most Answered Questions')
+@section('title', $subject->subject)
 
 @section('head')
 
@@ -12,13 +12,13 @@
     <section class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Most Answered Questions</h1>
+                <h1>{{$subject->subject}}</h1>
             </div>
             <div class="col-md-12">
                 <div class="crumbs">
                     <a href="{{route('home')}}">Home</a>
                     <span class="crumbs-span">/</span>
-                    <span class="current">Most Answered Questions</span>
+                    <span class="current"> {{$subject->subject}} </span>
                 </div>
             </div>
         </div><!-- End row -->
@@ -28,14 +28,14 @@
 <section class="container main-content">
     <div class="row">
         <div class="col-md-9">
-            @forelse($mostAnsweredQuestions as $item)
+            @forelse($questions as $item)
             @include('frontend.inc.singleQuestion')
             @empty
             <p>Oops! No Questions Found</p>
             @endforelse
 
             <div style="float: right">
-                {{ $mostAnsweredQuestions->links() }}
+                {{ $questions->links() }}
             </div>
         </div>
         @include('frontend.inc.rightpanel')

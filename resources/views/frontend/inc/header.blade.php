@@ -1,6 +1,7 @@
 <header id="header">
     <section class="container clearfix">
-        <div class="logo"><a href="{{route('home')}}"><img alt="" src="{{asset('mhreja/assets/images/logo.png')}}"></a>
+        <div class="logo"><a href="{{route('home')}}"><img alt="{{config('app.name', 'Laravel')}}"
+                    src="{{asset('mhreja/assets/images/logo.png')}}"></a>
         </div>
         <nav class="navigation">
             <ul>
@@ -16,12 +17,35 @@
                             height="32px">
                     </a>
                 </li>
-                <li><a href="javascript:void(0)">Questions</a>
+                <li
+                    class="@if(in_array(Request::route()->getName(), ['recentquestions', 'popularquestions', 'mostansweredquestions', 'notansweredquestions'])) current_page_item @endif">
+                    <a href="javascript:void(0)">Questions</a>
                     <ul>
                         <li><a href="{{route('recentquestions')}}">Recent Questions</a></li>
                         <li><a href="{{route('popularquestions')}}">Popular Questions</a></li>
                         <li><a href="{{route('mostansweredquestions')}}">Most Answered</a></li>
                         <li><a href="{{route('notansweredquestions')}}">Not Answered</a></li>
+                    </ul>
+                </li>
+                <li
+                    class="@if(in_array(Request::route()->getName(), ['subjectQuestions', 'topicQuestions',])) current_page_item @endif">
+                    <a href="javascript:void(0)">Subjects</a>
+                    <ul>
+                        @forelse ($subjects as $item)
+                        <li>
+                            <a href="{{route('subjectQuestions', $item->id)}}">{{$item->subject}}</a>
+                            <ul>
+                                @forelse ($item->topics as $topic)
+                                <li><a href="{{route('topicQuestions', $topic->id)}}">{{$topic->topic}}</a></li>
+                                @empty
+
+                                @endforelse
+                            </ul>
+                        </li>
+                        @empty
+
+                        @endforelse
+
                     </ul>
                 </li>
                 <li

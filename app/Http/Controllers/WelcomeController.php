@@ -51,8 +51,8 @@ class WelcomeController extends Controller
     {
         $mostAnsweredQuestions = Question::where('questions.is_approved', 1)
         ->whereHas('answers')->withCount(['answers' => function($q){
-            $q->where('answers.is_approved', 0);
-        }])->orderBy('answers_count', 'desc')
+            $q->where('answers.is_approved', 1);
+        }])->orderBy('answers_count', 'DESC')
         ->paginate(6);
         return view('frontend.mostansweredquestions', ['mostAnsweredQuestions'=>$mostAnsweredQuestions]);
     }
@@ -70,6 +70,36 @@ class WelcomeController extends Controller
     {
         $myQuestions = Auth::user()->questions()->latest()->paginate(6);
         return view('frontend.myquestions', ['myQuestions'=>$myQuestions]);
+    }
+
+    public function subjectQuestions(Subject $subject){
+        $questions = $subject->questions()->where('is_approved', 1)->latest()->paginate(6);
+        return view('frontend.subjectQuestions', ['subject'=>$subject, 'questions'=>$questions]);
+    }
+
+    public function topicQuestions(Topic $topic){
+        $questions = $topic->questions()->where('is_approved', 1)->latest()->paginate(6);
+        return view('frontend.topicQuestions', ['topic'=>$topic, 'questions'=>$questions]);
+    }
+
+    public function searchedQuestions(Request $request){
+        $questions = Question::where('is_approved', 1)
+            ->where('title', 'LIKE', "%{$request->keyword}%")
+            ->orWhere('details', 'LIKE', "%{$request->keyword}%")
+        ->paginate(6);
+        return view('frontend.searchedQuestions', ['questions'=>$questions]);
+    }
+
+    public function questionInner(Question $question){
+        if($question->is_approved == 0){
+            return abort(404);
+        }
+        
+        $relatedQuestions = Question::where('topic_id', $question->topic->id)
+            ->where('id', '!=', $question->id)
+            ->where('is_approved', 1)
+        ->orderBy('upvotes', 'DESC')->take(5)->get();
+        return view('frontend.questionInner', ['question'=>$question, 'relatedQuestions'=>$relatedQuestions]);
     }
 
 

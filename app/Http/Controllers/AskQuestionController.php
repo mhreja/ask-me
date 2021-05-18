@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Subject;
 use App\Models\Topic;
 use App\Models\Question;
+use App\Models\Answer;
 use Storage;
 use Session;
 use Auth;
@@ -27,7 +28,7 @@ class AskQuestionController extends Controller
             'subject_id'=>['required', 'numeric'],
             'topic_id'=>['required', 'numeric'],
             'details'=>['required', 'string',],
-            'image' => ['image', 'mimes:jpg,jpeg,png', 'max:500'],
+            'image' => ['image', 'mimes:jpg,jpeg,png', 'max:1500'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -47,5 +48,23 @@ class AskQuestionController extends Controller
             Session::flash('askquestion', $request->question);
         }
         return redirect()->route('askquestion.index')->with('pleasefillmore', 'Please fill some more details.');
+    }
+
+    public function answerstore(Request $request){
+        $request->validate([
+            'answer'=>['required', 'string',],
+            'image' => ['image', 'mimes:jpg,jpeg,png', 'max:1500'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            $path = Storage::disk('public')->put('answers', $request->file('image'));
+            $request->merge(['photo'=>$path]);
+        }
+
+        $request->merge(['user_id'=>Auth::user()->id]);
+
+        Answer::create($request->all());
+        
+        return redirect()->back()->with('newquestionadded', 'Your answer has been submitted succesfully. ');
     }
 }

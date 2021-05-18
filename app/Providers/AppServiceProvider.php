@@ -44,5 +44,12 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with(['count'=>$count, 'toprankers'=>$topRankers, 'recentQuestions'=>$recentQuestions]);
         });
+
+        View::composer('frontend.inc.header', function($view){
+            //Subjects
+            $subjects = Subject::orderby('subject', 'asc')->get();
+
+            $view->with(['subjects'=>$subjects,]);
+        });
     }
 }
