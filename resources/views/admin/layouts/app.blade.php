@@ -20,8 +20,9 @@
 
     <!-- Custom styles for DataTables -->
     <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('vendor/datatables/buttons.dataTables.min.css')}}">
 
-    <!-- Toasr -->
+    <!-- Toastr -->
     <link rel="stylesheet" href="{{asset('mhreja/assets/css/toastr.css')}}">
 
     <!-- Favicons -->
@@ -89,12 +90,19 @@
                 </div>
             </li>
 
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['questions.index',
+                'questions.show', 'questions.edit'])) active @endif">
+                <a class="nav-link" href="{{route('questions.index')}}">
+                    <i class="fas fa-question"></i>
+                    <span>Questions</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                <button class="rounded-circle border-0" id="sidebarToggle" onclick="sidebartoggle();"></button>
             </div>
 
         </ul>
@@ -235,6 +243,9 @@
     <!-- Core plugin JavaScript-->
     <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
+    <!-- Jquery Validation  -->
+    <script src="{{asset('mhreja/assets/js/jquery.validate.js')}}"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 
@@ -242,13 +253,21 @@
     <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
 
     <!-- Charts -->
-    <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
+    {{-- <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('js/demo/chart-bar-demo.js')}}"></script>
-    <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script> --}}
 
     <!-- DataTables -->
     <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/jszip.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/pdfmake.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/vfs_fonts.js')}}"></script>
+    <script src="{{asset('vendor/datatables/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/buttons.print.min.js')}}"></script>
+
 
     <!-- Alerts -->
     <script src="{{asset('mhreja/assets/js/sweetalert.js')}}"></script>
@@ -305,6 +324,26 @@
           }
           setInterval(dateTime, 1000);
         });
+    </script>
+
+    <!--Sidebar toggle remember -->
+    <script>
+        $(document).ready(function() {
+            //If previously minimized then open menu in minimized mode
+            if(localStorage.getItem("mini-navbar")){
+                $("body").addClass("sidebar-toggled");
+                $("#accordionSidebar").addClass("toggled");
+            }
+        });
+
+
+        function sidebartoggle(){
+            if(localStorage.getItem("mini-navbar")){
+                localStorage.removeItem("mini-navbar");
+            }else{
+                localStorage.setItem("mini-navbar", Date.now());
+            }
+        }
     </script>
 
     <!-- Extra JS-->

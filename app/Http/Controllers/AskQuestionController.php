@@ -61,6 +61,15 @@ class AskQuestionController extends Controller
             $request->merge(['photo'=>$path]);
         }
 
+        //If it's admin approve the answer
+        if(Auth::user()->is_admin == 1){
+            $request->merge(['is_approved'=>1]);
+            $request->merge(['is_correct_marked'=>1]);
+
+            //Mark the question as admin answered
+            Question::find($request->input('question_id'))->update(['has_admin_answered'=>1]);
+        }
+
         $request->merge(['user_id'=>Auth::user()->id]);
 
         Answer::create($request->all());

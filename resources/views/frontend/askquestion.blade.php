@@ -61,7 +61,7 @@
                                     <p>
                                         <label class="required">Subject<span>*</span></label>
                                         <select name="subject_id" id="subject">
-                                            <option disabled selected>Select a Category</option>
+                                            <option disabled selected>Select a Subject</option>
                                             @forelse ($allsubjects as $item)
                                             <option value="{{$item->id}}"
                                                 {{old('subject') == $item->id ? 'selected' : ''}}>
@@ -161,23 +161,23 @@
 <!-- Get Topics -->
 <script>
     $('#subject').on('change', function() {
-    var subjectId = this.value;
-    var route = "{{route('getTopics',':subid')}}";
-    route = route.replace(':subid',subjectId);
-    $.ajax({
-    type: "GET",
-    url: route,
-    success: function(data){
-        // console.log(data);
-        var html = '';
-        html += '<option selected disabled>Select a Topic</option>'
-        data.forEach(function(row){
-            html += '<option value="'+row.id+'">'+row.topic+'</option>';
+        var subjectId = this.value;
+        var route = "{{route('getTopics',':subid')}}";
+        route = route.replace(':subid',subjectId);
+        $.ajax({
+        type: "GET",
+        url: route,
+        success: function(data){
+            // console.log(data);
+            var html = '';
+            html += '<option selected disabled>Select a Topic</option>'
+            data.forEach(function(row){
+                html += '<option value="'+row.id+'">'+row.topic+'</option>';
+            });
+            $('#topic').html(html);
+        }
         });
-        $('#topic').html(html);
-    }
     });
-});
 </script>
 
 
