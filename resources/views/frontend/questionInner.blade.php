@@ -54,7 +54,7 @@
                         {!! $question->details !!}
                         <br>
                         @if($question->photo != NULL)
-                        <img src="{{asset('storage/'.$question->photo)}}" alt="answer">
+                        <img src="{{asset('storage/'.$question->photo)}}" alt="question">
                         @endif
                     </div>
 
