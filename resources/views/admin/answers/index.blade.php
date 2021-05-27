@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Questions')
+@section('title', 'Answers')
 
 @section('head')
 <style>
@@ -15,7 +15,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Questions</h1>
+        <h1 class="h3 mb-0 text-gray-800">Answers</h1>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
             aria-expanded="false" aria-controls="collapseExample" id="advBtn">
             Advance Search
@@ -29,23 +29,15 @@
             <div class="card-body">
                 <form id="advaceSearchForm">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">ID</label>
                                 <input type="text" name="id" class="form-control" placeholder="e.g: 105">
                             </div>
                         </div>
-                        <div class="col-md-10">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="">Question Title</label>
-                                <input type="text" name="title" class="form-control" placeholder="Question Title">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="">Asked By</label>
+                                <label for="">Answered By</label>
                                 <select name="user_id" class="form-control">
                                     <option disabled selected>Select</option>
                                     @forelse ($users as $item)
@@ -57,7 +49,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">Approved?</label>
                                 <select name="is_approved" class="form-control">
@@ -67,37 +59,17 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label for="">Favorite?</label>
-                                <select name="is_favorite" class="form-control">
+                                <label for="">Is Correct Answer?</label>
+                                <select name="is_correct_marked" class="form-control">
                                     <option selected disabled>Select</option>
                                     <option value="1">Yes</option>
                                     <option value="2">No</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="">Has Answer?</label>
-                                <select name="has_answer" class="form-control">
-                                    <option selected disabled>Select</option>
-                                    <option value="1">Yes</option>
-                                    <option value="2">No</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="">Admin Answered?</label>
-                                <select name="admin_answer" class="form-control">
-                                    <option selected disabled>Select</option>
-                                    <option value="1">Yes</option>
-                                    <option value="2">No</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="">Rejected?</label>
                                 <select name="rejected" class="form-control">
@@ -107,29 +79,6 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="">Subject</label>
-                                <select name="subject" id="subject" class="form-control">
-                                    <option disabled selected>Select a Subject</option>
-                                    @forelse ($allsubjects as $item)
-                                    <option value="{{$item->id}}">
-                                        {{$item->subject}}
-                                    </option>
-                                    @empty
-                                    @endforelse
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="">Topic</label>
-                            <select name="topic" id="topic" class="form-control">
-                                <option selected disabled>Select a subject first</option>
-                            </select>
-                        </div>
-
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="">From Date</label>
@@ -149,7 +98,7 @@
     </div>
     <div class="card shadow mb-4">
         <div class="card-header">
-            Questions List
+            Answers List
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -157,11 +106,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Title</th>
-                            <th>Subject</th>
-                            <th>Topic</th>
-                            <th>Asked</th>
-                            <th class="no-sort">Answers</th>
+                            <th class="no-sort">Answer</th>
+                            <th class="no-sort">Question</th>
+                            <th class="no-sort">Answered</th>
                             <th>Upvotes</th>
                             <th>Downvotes</th>
                             <th class="no-sort">Action</th>
@@ -170,11 +117,9 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Title</th>
-                            <th>Subject</th>
-                            <th>Topic</th>
-                            <th>Asked</th>
-                            <th class="no-sort">Answers</th>
+                            <th class="no-sort">Answer</th>
+                            <th class="no-sort">Question</th>
+                            <th class="no-sort">Answered</th>
                             <th>Upvotes</th>
                             <th>Downvotes</th>
                             <th class="no-sort">Action</th>
@@ -209,28 +154,6 @@
 
 @section('scripts')
 
-<!-- Get Topics of any subject -->
-<script>
-    $('#subject').on('change', function() {
-        var subjectId = this.value;
-        var route = "{{route('getTopics',':subid')}}";
-        route = route.replace(':subid',subjectId);
-        $.ajax({
-        type: "GET",
-        url: route,
-        success: function(data){
-            // console.log(data);
-            var html = '';
-            html += '<option selected disabled>Select a Topic</option>'
-            data.forEach(function(row){
-                html += '<option value="'+row.id+'">'+row.topic+'</option>';
-            });
-            $('#topic').html(html);
-        }
-        });
-    });
-</script>
-
 <!-- Get Data -->
 <script type="text/javascript">
     $(document).ready(function(){
@@ -258,7 +181,7 @@
             targets: "no-sort"
         }],
         'ajax': {
-            'url': "{{route('questions.getData')}}",
+            'url': "{{route('answers.getData')}}",
             'data': function(data){
                 var searchFilter = JSON.stringify(arrayToJson($('#advaceSearchForm').serializeArray()));
                 data.searchFilter = searchFilter;
@@ -266,37 +189,32 @@
         },
         columns: [                
             {data: 'ID'},
-            {data: 'Title'},
-            {data: 'Subject'},
-            {data: 'Topic'},
-            {data: 'Asked'},
-            {data: 'Answers'},
+            {data: 'Answer'},
+            {data: 'Question'},
+            {data: 'Answered By'},
             {data: 'Upvotes'},
             {data: 'Downvotes'},
             {data: null, render: function(data, type, row){
-                var viewRoute = "{{route('questions.show',':id')}}";
+                var viewRoute = "{{route('answers.show',':id')}}";
                 viewRoute = viewRoute.replace(':id', data.ID);
-                
-                var editRoute = "{{route('questions.edit',':id')}}";
-                editRoute = editRoute.replace(':id', data.ID);
 
-                var deleteRoute = "{{route('questions.destroy',':id')}}";
+                var deleteRoute = "{{route('answers.destroy',':id')}}";
                 deleteRoute = deleteRoute.replace(':id', data.ID);
 
                 if(data.Approved == 0){
-                    var approvingRoute = "{{route('questions.markApproved', ':id')}}";
+                    var approvingRoute = "{{route('answers.markApproved', ':id')}}";
                     approvingRoute = approvingRoute.replace(':id', data.ID);
                     var approvingLink = '<a class="dropdown-item" href="'+approvingRoute+'">Mark as Approved</a>';
                 }else var approvingLink = '';
 
-                if(data.Favorite == 0){
-                    var favoriteRoute = "{{route('questions.markFavorite', ':id')}}";
-                    favoriteRoute = favoriteRoute.replace(':id', data.ID);
-                    var favoriteLink = '<a class="dropdown-item" href="'+favoriteRoute+'">Mark as Favorite</a>';
-                }else var favoriteLink = '';
+                if(data.Correct == 0){
+                    var correctRoute = "{{route('answers.markCorrect', ':id')}}";
+                    correctRoute = correctRoute.replace(':id', data.ID);
+                    var correctLink = '<a class="dropdown-item" href="'+correctRoute+'">Mark as Correct</a>';
+                }else var correctLink = '';
 
                 if(data.Approved == 0 && data.Rejection == null){
-                    var rejectLink = '<a class="dropdown-item reject-question" href="javascript:void()" data-id="'+data.ID+'"  data-toggle="modal" data-target="#rejectModal">Reject</a>';
+                    var rejectLink = '<a class="dropdown-item reject-answer" href="javascript:void()" data-id="'+data.ID+'"  data-toggle="modal" data-target="#rejectModal">Reject</a>';
                 }else var rejectLink = '';
 
                 return  '<div class="dropdown">'+
@@ -308,9 +226,7 @@
                         '@csrf'+
                         '@method("DELETE")'+
                         '<a class="dropdown-item" href="'+viewRoute+'" target="_blank">View</a>'+
-                        approvingLink + favoriteLink + 
-                        '<a class="dropdown-item" href="'+editRoute+'" target="_blank">Edit</a>'+
-                        rejectLink +
+                        approvingLink + correctLink + rejectLink +
                         '<button type="submit" class="btnDelete dropdown-item">Delete</button>'+
                     '</form>'+
                     '</div>'+
@@ -343,7 +259,7 @@
         var form = $(this).parents('form');
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this question as well as the answers of this question!",
+            text: "Once deleted, you will not be able to recover this answers!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -352,24 +268,24 @@
             if (willDelete) {
                 form.submit();
             } else {
-                swal("The question is safe!");
+                swal("The answer is safe!");
             }
         });
     });
 
     //Reject Modal Form Create
-    $('#mydataTable').on('click', '.reject-question', function(){
+    $('#mydataTable').on('click', '.reject-answer', function(){
         var id = $(this).data('id');
-        var route = "{{route('questions.reject', ':id')}}";
+        var route = "{{route('answers.reject', ':id')}}";
         route = route.replace(':id', id);
 
-        var modalHeadHtml = 'Reject Question(id: '+id+')';
+        var modalHeadHtml = 'Reject Answer(id: '+id+')';
 
         var formBodyHtml = '<form action="'+route+'" method="POST" id="rejectForm">'+
             '@csrf'+
             '<div class="form-group">'+
                 '<label>Reason of Rejection <span class="text-danger"> * </span></label>'+
-                '<textarea class="form-control" name="rejection_comment" cols="30" rows="5" placeholder="e.g: Invalid Question"></textarea>'+
+                '<textarea class="form-control" name="rejection_comment" cols="30" rows="5" placeholder="e.g: Invalid Answer"></textarea>'+
             '</div>'+
             '<button type="button" class="btn btn-block btn-outline-secondary" data-dismiss="modal">Cancel</button>'+
             '<button class="btn btn-block btn-outline-danger" type="submit">Reject</button>'+

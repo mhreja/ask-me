@@ -56,10 +56,22 @@ Route::middleware(['auth:sanctum','admin'])->prefix('admin')->group(function(){
 	Route::get('/','AdminDashboardController@index');
 	Route::get('dashboard','AdminDashboardController@index')->name('dashboard');
 
+	Route::get('users', 'admin\UserController@index')->name('users.index');
+	Route::get('users/get/data', 'admin\UserController@getData')->name('users.getData');
+
 	Route::view('subjects', 'admin.Subjects.index')->name('subjects');
 	Route::view('topics', 'admin.Topics.index')->name('topics');
 
 	Route::resource('questions', 'admin\QuestionController');
 	Route::get('questions/get/data', 'admin\QuestionController@getData')->name('questions.getData');
+	Route::get('questions/mark/approved/{question}', 'admin\QuestionController@markApproved')->name('questions.markApproved');
+	Route::get('questions/mark/favorite/{question}', 'admin\QuestionController@markFavorite')->name('questions.markFavorite');
+	Route::post('questions/mark/rejected/{question}', 'admin\QuestionController@markRejected')->name('questions.reject');
+
+	Route::resource('answers', 'admin\AnswerController');
+	Route::get('answers/get/data', 'admin\AnswerController@getData')->name('answers.getData');
+	Route::get('answers/mark/approved/{answer}', 'admin\AnswerController@markApproved')->name('answers.markApproved');
+	Route::get('answers/mark/correct/{answer}', 'admin\AnswerController@markCorrect')->name('answers.markCorrect');
+	Route::post('answers/mark/rejected/{answer}', 'admin\AnswerController@markRejected')->name('answers.reject');
 	
 });

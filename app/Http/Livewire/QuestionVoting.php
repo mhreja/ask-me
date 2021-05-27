@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\User;
 use App\Models\Question;
 use App\Models\Questionlikedislike;
 use Auth;
@@ -45,6 +46,8 @@ class QuestionVoting extends Component
         if ($this->isVoted == 0){
             Question::find($this->questionId)->increment('upvotes', 1);
             Questionlikedislike::create(['user_id'=>Auth::user()->id , 'question_id'=>$this->questionId , 'upordown'=>1]);
+            $userId = Question::find($this->questionId)->user_id;
+            User::find($userId)->increment('points', UPVOTE_POINT);
             $this->upvotes++;
             $this->isVoted = 1;
             $this->isLiked = 1;
@@ -56,6 +59,8 @@ class QuestionVoting extends Component
         if ($this->isVoted == 0){
             Question::find($this->questionId)->increment('downvotes', 1);
             Questionlikedislike::create(['user_id'=>Auth::user()->id , 'question_id'=>$this->questionId , 'upordown'=>0]);
+            $userId = Question::find($this->questionId)->user_id;
+            User::find($userId)->decrement('points', DOWNVOTE_POINT);
             $this->downvotes++;
             $this->isVoted = 1;
             $this->isDisliked = 1;
