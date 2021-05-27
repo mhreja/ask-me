@@ -134,12 +134,27 @@
                             <div class="comment-text">
                                 <div class="author clearfix">
                                     <div class="comment-author">
-                                        <a href="#">{{$item->user->name}}</a>
+                                        <a href="#">
+                                            {{$item->user->name}}
+
+                                        </a>
                                         @if($item->user->is_admin == 1)
                                         <i l_background="#3498db" l_background_hover="#34495E"
                                             class="icon-ok-sign ul_l_circle"
                                             style="background-color: rgb(30, 207, 45); color: rgb(255, 255, 255);"></i>
                                         @endif
+
+                                        @if($item->user->points >= RANK1MINPOINTS)
+                                        <p class="badge badge-platinum">{{RANK1NAME}}</p>
+                                        @elseif($item->user->points >= RANK2MINPOINTS)
+                                        <p class="badge badge-gold">{{RANK2NAME}}</p>
+                                        @elseif($item->user->points >= RANK3MINPOINTS)
+                                        <p class="badge badge-silver">{{RANK3NAME}}</p>
+                                        @elseif($item->user->points >= RANK4MINPOINTS)
+                                        <p class="badge badge-bronze">{{RANK4NAME}}</p>
+                                        @else
+                                        @endif
+
                                     </div>
                                     <div class="comment-meta">
                                         <div class="date"><i

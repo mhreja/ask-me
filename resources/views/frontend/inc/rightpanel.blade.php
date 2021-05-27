@@ -16,13 +16,38 @@
         <h3 class="widget_title">Highest points</h3>
         <ul>
             @foreach($toprankers as $user)
+
             <li>
                 <div class="author-img">
-                    <a href="javascript:void()"><img width="60" height="60" src="{{$user->profile_photo_url}}"
+                    <a href="javascript:void()"><img width="30" height="30" src="{{$user->profile_photo_url}}"
                             alt=""></a>
                 </div>
                 <h6><a href="javascript:void()">{{$user->name}}</a></h6>
-                <span class="comment">{{$user->points}} Points</span>
+
+                @if($user->points >= RANK1MINPOINTS)
+                <p class="badge badge-platinum">
+                    {{RANK1NAME}}
+                    <small>{{$user->points}} Points</small>
+                </p>
+                @elseif($user->points >= RANK2MINPOINTS)
+                <p class="badge badge-gold">
+                    {{RANK2NAME}}
+                    <small>{{$user->points}} Points</small>
+                </p>
+                @elseif($user->points >= RANK3MINPOINTS)
+                <p class="badge badge-silver">
+                    {{RANK3NAME}}
+                    <small>{{$user->points}} Points</small>
+                </p>
+                @elseif($user->points >= RANK4MINPOINTS)
+                <p class="badge badge-bronze">
+                    {{RANK4NAME}}
+                    <small>{{$user->points}} Points</small>
+                </p>
+                @else
+                @endif
+
+                <span class="comment"></span>
             </li>
             @endforeach
         </ul>
