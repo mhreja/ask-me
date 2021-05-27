@@ -19,12 +19,19 @@ define('DOWNVOTE_POINT', '2');
 define('UPVOTE5_POINT_REWARD', '15');
 define('DOWNVOTE5_POINT_CUT', '5');
 
-//Rank Badges
-//Min Points to get Rank Badge
-define('BRONZE', '200');
-define('SILVER', '500');
-define('GOLD', '1000');
-define('PLATINUM', '2000');
+//Rank Badges AND Min Points to get Rank Badge
+define('RANK1NAME', 'PLATINUM');
+define('RANK1MINPOINTS', '2000');
+
+define('RANK2NAME', 'GOLD');
+define('RANK2MINPOINTS', '1000');
+
+define('RANK3NAME', 'SILVER');
+define('RANK3MINPOINTS', '500');
+
+define('RANK4NAME', 'BRONZE');
+define('RANK4MINPOINTS', '200');
+
 
 //Footer Section 
 define('ADDRESS', 'Newtown, Kolkata, West Bengal');

@@ -5,3 +5,35 @@
     border-bottom: 1px solid #dedede;
     color: #848991;
 }
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.badge-platinum {
+    color: #fff !important;
+    background-color: #3498db;
+}
+
+.badge-gold {
+    color: #fff !important;
+    background-color: #f1c40f;
+}
+
+.badge-bronze {
+    color: #fff !important;
+    background-color: #e74c3c;
+}
+
+.badge-silver {
+    color: #fff !important;
+    background-color: #b7b7b7;
+}

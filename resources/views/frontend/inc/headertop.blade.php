@@ -11,6 +11,17 @@
                         <img width="18px" height="18px" src="{{ Auth::user()->profile_photo_url }}"
                             alt="{{ Auth::user()->name }}" style="border-radius: 50%; display: inline;">
                         {{ Auth::user()->name }}
+
+                        @if(Auth::user()->points >= RANK1MINPOINTS)
+                        <span class="badge badge-platinum">{{RANK1NAME}}</span>
+                        @elseif(Auth::user()->points >= RANK2MINPOINTS)
+                        <span class="badge badge-gold">{{RANK2NAME}}</span>
+                        @elseif(Auth::user()->points >= RANK3MINPOINTS)
+                        <span class="badge badge-silver">{{RANK3NAME}}</span>
+                        @elseif(Auth::user()->points >= RANK4MINPOINTS)
+                        <span class="badge badge-bronze">{{RANK4NAME}}</span>
+                        @else
+                        @endif
                     </a>
                 </li>
                 @endauth

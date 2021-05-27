@@ -115,11 +115,21 @@ class UserController extends Controller
         $data_arr = array();
         
         foreach($records as $record){
+            if($record->points >= RANK1MINPOINTS){
+                $rankBadge = '<span class="badge badge-primary">'.RANK1NAME.'</span>';
+            }elseif($record->points >= RANK2MINPOINTS){
+                $rankBadge = '<span class="badge badge-warning">'.RANK2NAME.'</span>';
+            }elseif($record->points >= RANK3MINPOINTS){
+                $rankBadge = '<span class="badge badge-secondary">'.RANK3NAME.'</span>';
+            }elseif($record->points >= RANK4MINPOINTS){
+                $rankBadge = '<span class="badge badge-info">'.RANK4NAME.'</span>';
+            }else $rankBadge = '';
+
             $personalDetails = 'Name: <strong>'.$record->name.'</strong><br>Email: <strong>'.$record->email.'</strong><br>Phone: <strong>'.$record->mobile.'</strong><br>DOB: <strong>'.date('d M, Y', strtotime($record->dob)).'</strong>';
             $data_arr[] = array(
                 'Photo' => '<img src="'.$record->profile_photo_url.'" alt="'.$record->name.'" class="rounded-circle" width="50px">',
                 'ID' => $record->id,
-                'Username' => $record->username,
+                'Username' => $record->username .' '. $rankBadge,
                 'Questions' => $record->questions->count(),
                 'Answers' => $record->answers->count(),
                 'Points' => $record->points,
