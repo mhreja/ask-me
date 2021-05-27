@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Str;
 
 use App\Models\User;
@@ -14,7 +15,7 @@ use App\Models\Answer;
 
 use Storage;
 
-class QuestionController extends Controller
+class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +26,7 @@ class QuestionController extends Controller
     {
         $users = User::all();
         $subjects = Subject::orderBy('subject')->get();
-        return view('admin.questions.index', ['users'=>$users, 'allsubjects'=>$subjects]);
+        return view('admin.answers.index', ['users'=>$users, 'allsubjects'=>$subjects]);
     }
 
     /**
@@ -35,7 +36,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return abort(404);
+        abort(404);
     }
 
     /**
@@ -46,7 +47,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        return abort(404);
+        abort(404);
     }
 
     /**
@@ -55,9 +56,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show(Answer $answer)
     {
-        return view('admin.questions.show', ['question'=>$question]);
+        return view('admin.answers.show', ['answer'=>$answer]);
     }
 
     /**
@@ -66,9 +67,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit($id)
     {
-        return view('admin.questions.edit', ['question'=>$question]);
+        abort(404);
     }
 
     /**
@@ -78,17 +79,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, $id)
     {
-        // dd($request->all());
-        $request->validate([
-            'title'=>['required', 'string', 'max:255'],
-            'details'=>['required', 'string',],
-        ]);
-
-        $question->update($request->all());
-        
-        return redirect()->back()->with('info', 'Question Details Updated.');
+        abort(404);
     }
 
     /**
@@ -97,54 +90,53 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy(Answer $answer)
     {
-        Storage::disk('public')->delete($question->photo);
-        $question->delete();
-        return redirect()->back()->with('error', 'Question Deleted.');
+        Storage::disk('public')->delete($answer->photo);
+        $answer->delete();
+        return redirect()->back()->with('error', 'Answer Deleted.');
     }
 
 
-    /**
+     /**
      * Mark as Approved
     */
-    public function markApproved(Question $question)
+    public function markApproved(Answer $answer)
     {
-        $question->user->increment('points', QUESTION_APPROVED_POINT);
+        $answer->user->increment('points', ANSWER_APPROVED_POINT);
         $data = [
             'is_approved'=>1,
         ];
-        $question->update($data);
-        return redirect()->back()->with('success', "Question(id: $question->id) marked as Approved.");
+        $answer->update($data);
+        return redirect()->back()->with('success', "Answer(id: $answer->id) marked as Approved.");
     }
 
     /**
-    * Mark as Favorite
+    * Mark as Correct
     */
-    public function markFavorite(Question $question)
+    public function markCorrect(Answer $answer)
     {
-        $question->user->increment('points', QUESTION_FAVORITE_POINT);
+        $answer->user->increment('points', ANSWER_CORRECT_POINT);
         $data = [
-            'is_favorite'=>1,
+            'is_correct_marked'=>1,
         ];
-        $question->update($data);
-        return redirect()->back()->with('success', "Question(id: $question->id) marked as Favorite.");
+        $answer->update($data);
+        return redirect()->back()->with('success', "Answer(id: $answer->id) marked as Correct.");
     }
 
 
      /**
     * Mark as Rejected
     */
-    public function markRejected(Request $request, Question $question)
+    public function markRejected(Request $request, Answer $answer)
     {
         $request->validate([
             'rejection_comment'=>['required', 'string', 'max:255'],
         ]);
         $request->merge(['is_approved'=>0]);
-        $question->update($request->all());
-        return redirect()->back()->with('error', "Question(id: $question->id) Rejected.");
+        $answer->update($request->all());
+        return redirect()->back()->with('error', "Answer(id: $answer->id) Rejected.");
     }
-
 
 
     /**
@@ -168,7 +160,7 @@ class QuestionController extends Controller
         $columnSortOrder = $order_arr[0]['dir']; 
         $searchValue = $search_arr['value']; 
 
-        $recordsQuery =  Question::query();
+        $recordsQuery =  Answer::query();
                     
           
         $totalRecords = $recordsQuery->count();
@@ -177,7 +169,7 @@ class QuestionController extends Controller
         if($searchValue!=""){
           $_SESSION['key'] = $searchValue;
           $recordsQuery=$recordsQuery->where(function($q) {
-            $q->where('title', 'LIKE', '%' .$_SESSION['key']. '%')
+            $q->where('answer', 'LIKE', '%' .$_SESSION['key']. '%')
             ->orWhere('id', $_SESSION['key'])
             ->orWhere('upvotes', $_SESSION['key'])
             ->orWhere('downvotes', $_SESSION['key']);
@@ -191,21 +183,6 @@ class QuestionController extends Controller
         if(!empty($searchFilter->id))
         {
             $recordsQuery = $recordsQuery->where('id', $searchFilter->id);
-        }
-        
-        if(!empty($searchFilter->title))
-        {
-            $recordsQuery = $recordsQuery->where('title', 'LIKE', '%' . $searchFilter->title . '%');
-        }
-
-        if(!empty($searchFilter->subject))
-        {
-            $recordsQuery = $recordsQuery->where('subject_id', '=', $searchFilter->subject);
-        }
-
-        if(!empty($searchFilter->topic))
-        {
-            $recordsQuery = $recordsQuery->where('topic_id', '=', $searchFilter->topic);
         }
 
         if(!empty($searchFilter->user_id))
@@ -221,29 +198,12 @@ class QuestionController extends Controller
             $recordsQuery = $recordsQuery->where('is_approved', $is_approvedVal);
         }
 
-        if(!empty($searchFilter->is_favorite))
+        if(!empty($searchFilter->is_correct_marked))
         {
-            if($searchFilter->is_favorite == 1){
-                $is_favoriteVal = 1;
-            }else $is_favoriteVal = 0;
-            $recordsQuery = $recordsQuery->where('is_favorite', '=', $is_favoriteVal);
-        }
-
-        if(!empty($searchFilter->has_answer))
-        {
-            if($searchFilter->has_answer == 1){
-                $recordsQuery = $recordsQuery->whereHas('answers');
-            }else{
-                $recordsQuery = $recordsQuery->doesntHave('answers');
-            }
-        }
-
-        if(!empty($searchFilter->admin_answer))
-        {
-            if($searchFilter->admin_answer == 1){
-                $admin_answerVal = 1;
-            }else $admin_answerVal = 0;
-            $recordsQuery = $recordsQuery->where('has_admin_answered', '=', $admin_answerVal);
+            if($searchFilter->is_correct_marked == 1){
+                $is_correct_markedVal = 1;
+            }else $is_correct_markedVal = 0;
+            $recordsQuery = $recordsQuery->where('is_correct_marked', '=', $is_correct_markedVal);
         }
 
         if(!empty($searchFilter->rejected))
@@ -264,18 +224,6 @@ class QuestionController extends Controller
         if ($columnName != "" && $columnSortOrder != "") {
             if ($columnName == "ID" ) {
                 $columnName = 'id';
-            }
-            if ($columnName == "Title" ) {
-                $columnName = 'title';
-            }
-            if ($columnName == "Subject" ) {
-                $columnName = 'subject_id';
-            }
-            if ($columnName == "Topic" ) {
-                $columnName = 'topic_id';
-            }
-            if ($columnName == "Asked" ) {
-                $columnName = 'user_id';
             }
             if ($columnName == "Upvotes" ) {
                 $columnName = 'upvotes';
@@ -302,33 +250,27 @@ class QuestionController extends Controller
                 $approvedBadge = '<span class="badge badge-success">Approved</span>';
             }else $approvedBadge = '<span class="badge badge-secondary">Pending</span>';
 
-            if($record->is_favorite == 1){
-                $favBadge = '<span class="badge badge-primary"><i class="fa fa-heart"></i> Favorite</span>';
-            }else $favBadge = '';
-
-            if($record->has_admin_answered == 1){
-                $adminAnswerBadge = '<span class="badge badge-warning"><i class="fa fa-check"></i> '.ADMIN_ANSWERED.'</span>';
-            }else $adminAnswerBadge = '';
+            if($record->is_correct_marked == 1){
+                $correctBadge = '<span class="badge badge-primary"><i class="fa fa-check"></i> Correct</span>';
+            }else $correctBadge = '';
 
             if($record->rejection_comment != NULL){
                 $rejectionComment = '<span class="badge badge-danger"> Rejected</span><br><span class="font-italic text-danger"><small>'.$record->rejection_comment.'</small><span>';
             }else $rejectionComment = '';
 
-            $aksedOn = '<span class="text-info"><small>'.date('d M, Y h:i A', strtotime($record->created_at)).'</small></span>';
+            $answeredOn = '<span class="text-info"><small>'.date('d M, Y h:i A', strtotime($record->created_at)).'</small></span>';
 
-            $titleField = Str::limit($record->title, 75).'<br>'.$approvedBadge . $favBadge . $adminAnswerBadge . $rejectionComment .'<br>'. $aksedOn ;
+            $answerField = Str::limit(strip_tags($record->answer), 175).'<br>'.$approvedBadge . $correctBadge . $rejectionComment .'<br>'. $answeredOn ;
 
             $data_arr[] = array(
                 'ID' => $record->id,
-                'Title' => $titleField,
-                'Subject' => $record->subject->subject,
-                'Topic' => $record->topic->topic,
-                'Asked' => $record->user->name,
-                'Answers' => $record->answers->count(),
+                'Answer' => $answerField,
+                'Question' => '#'.$record->question->id . ': ' . Str::limit($record->question->title, 175),
+                'Answered By' => $record->user->name,
                 'Upvotes' => $record->upvotes,
                 'Downvotes' => $record->downvotes,
                 'Approved' => $record->is_approved,
-                'Favorite' => $record->is_favorite,
+                'Correct' => $record->is_correct_marked,
                 'Rejection' => $record->rejection_comment,
             );        
         }

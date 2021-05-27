@@ -65,10 +65,15 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                BREAD
-            </div>
+            <li class="nav-item {{Route::current()->getName() == 'users.index' ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('users.index')}}">
+                    <i class="fa fa-users"></i>
+                    <span>Users</span></a>
+            </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item @if(in_array(Route::current()->getName(), ['subjects.index',
@@ -95,6 +100,13 @@
                 <a class="nav-link" href="{{route('questions.index')}}">
                     <i class="fas fa-question"></i>
                     <span>Questions</span></a>
+            </li>
+
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['answers.index',
+                'answers.show', 'answers.edit'])) active @endif">
+                <a class="nav-link" href="{{route('answers.index')}}">
+                    <i class="fas fa-pen"></i>
+                    <span>Answers</span></a>
             </li>
 
             <!-- Divider -->

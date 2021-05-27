@@ -13,6 +13,7 @@ class Answer extends Model
         'user_id',
         'is_approved',
         'rejection_comment',
+        'is_correct_marked',
         'question_id',
         'answer',
         'photo',

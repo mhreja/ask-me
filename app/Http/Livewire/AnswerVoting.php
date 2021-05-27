@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+
+use App\Models\User;
 use App\Models\Answer;
 use App\Models\Answerlikedislike;
 use Auth;
@@ -46,7 +48,12 @@ class AnswerVoting extends Component
         if ($this->isVoted == 0){
             Answer::find($this->answerId)->increment('upvotes', 1);
             Answerlikedislike::create(['user_id'=>Auth::user()->id , 'answer_id'=>$this->answerId , 'upordown'=>1]);
+            $userId = Answer::find($this->answerId)->user_id;
+            User::find($userId)->increment('points', UPVOTE_POINT);
             $this->upvotes++;
+            if($this->upvotes == 5){
+                User::find($userId)->increment('points', UPVOTE5_POINT_REWARD);
+            }
             $this->isVoted = 1;
             $this->isLiked = 1;
         }        
@@ -57,7 +64,12 @@ class AnswerVoting extends Component
         if ($this->isVoted == 0){
             Answer::find($this->answerId)->increment('downvotes', 1);
             Answerlikedislike::create(['user_id'=>Auth::user()->id , 'answer_id'=>$this->answerId , 'upordown'=>0]);
+            $userId = Answer::find($this->answerId)->user_id;
+            User::find($userId)->decrement('points', DOWNVOTE_POINT);
             $this->downvotes++;
+            if($this->downvotes == 5){
+                User::find($userId)->decrement('points', DOWNVOTE5_POINT_CUT);
+            }
             $this->isVoted = 1;
             $this->isDisliked = 1;
         }
