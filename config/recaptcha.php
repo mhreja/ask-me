@@ -19,7 +19,7 @@ return [
      * get site key @ www.google.com/recaptcha/admin
      *
      */
-    'api_site_key'                 => '6LeSe_4ZAAAAALfM46zpJjOA7i0FOa3FO2a6WaUb', //env('RECAPTCHA_SITE_KEY', ''),
+    'api_site_key'                 => '6LdpYBMbAAAAAPd7RpvE1hIkNyXWs4TgI9PO3eR_', //env('RECAPTCHA_SITE_KEY', ''),
 
     /**
      *
@@ -27,7 +27,7 @@ return [
      * get secret key @ www.google.com/recaptcha/admin
      *
      */
-    'api_secret_key'               => '6LeSe_4ZAAAAALleHBbqMwRHRliwNp4LCpiYoPou', //env('RECAPTCHA_SECRET_KEY', ''),
+    'api_secret_key'               => '6LdpYBMbAAAAADsyPnWSaH20lTdRjWTsOsIUvQFr', //env('RECAPTCHA_SECRET_KEY', ''),
 
     /**
      *
