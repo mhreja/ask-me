@@ -12,6 +12,7 @@ Route::get('questions/recent', 'WelcomeController@recentquestions')->name('recen
 Route::get('questions/popular', 'WelcomeController@popularquestions')->name('popularquestions');
 Route::get('questions/most-answered', 'WelcomeController@mostansweredquestions')->name('mostansweredquestions');
 Route::get('questions/not-answered', 'WelcomeController@notansweredquestions')->name('notansweredquestions');
+Route::get('questions/admin-favorite', 'WelcomeController@adminfavquestions')->name('adminfavquestions');
 
 //Subject Question
 Route::get('questions/subject/{subject}', 'WelcomeController@subjectQuestions')->name('subjectQuestions');
@@ -26,7 +27,7 @@ Route::get('questions/search', 'WelcomeController@searchedQuestions')->name('sea
 Route::get('question/{question}', 'WelcomeController@questionInner')->name('questionInner');
 
 
-Route::middleware(['auth:sanctum', 'user'])->group(function(){
+Route::middleware(['auth:sanctum', 'verified', 'user'])->group(function(){
 	//Mini Ask Now
 	Route::post('ask/question', 'AskQuestionController@miniask')->name('askquestion.miniask');
 
@@ -37,9 +38,6 @@ Route::middleware(['auth:sanctum', 'user'])->group(function(){
 
 	//My Questions
 	Route::get('my-questions', 'WelcomeController@myquestions')->name('my-questions');
-
-	//My Profile
-	Route::view('my-profile', 'frontend.myprofile')->name('myprofile.show');
 });
 
 //Common

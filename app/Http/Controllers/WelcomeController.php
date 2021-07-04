@@ -65,6 +65,13 @@ class WelcomeController extends Controller
         return view('frontend.notansweredquestions', ['notAnsweredQuestions'=>$notAnsweredQuestions]);
     }
 
+    public function adminfavquestions(){
+        $adminfavquestions = Question::where('questions.is_approved', 1)
+        ->where('is_favorite', 1)
+        ->paginate(6);
+        return view('frontend.adminfavquestions', ['adminfavquestions'=>$adminfavquestions]);
+    }
+
 
     public function myquestions()
     {

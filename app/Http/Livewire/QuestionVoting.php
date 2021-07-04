@@ -43,10 +43,12 @@ class QuestionVoting extends Component
 
     public function like()
     {
-        if ($this->isVoted == 0){
+        $userId = Question::find($this->questionId)->user_id;
+
+        if ($this->isVoted == 0 && $userId != Auth::user()->id){
             Question::find($this->questionId)->increment('upvotes', 1);
             Questionlikedislike::create(['user_id'=>Auth::user()->id , 'question_id'=>$this->questionId , 'upordown'=>1]);
-            $userId = Question::find($this->questionId)->user_id;
+            
             User::find($userId)->increment('points', UPVOTE_POINT);
             $this->upvotes++;
             $this->isVoted = 1;
@@ -56,10 +58,12 @@ class QuestionVoting extends Component
 
     public function dislike()
     {
-        if ($this->isVoted == 0){
+        $userId = Question::find($this->questionId)->user_id;
+
+        if ($this->isVoted == 0  && $userId != Auth::user()->id){
             Question::find($this->questionId)->increment('downvotes', 1);
             Questionlikedislike::create(['user_id'=>Auth::user()->id , 'question_id'=>$this->questionId , 'upordown'=>0]);
-            $userId = Question::find($this->questionId)->user_id;
+            
             User::find($userId)->decrement('points', DOWNVOTE_POINT);
             $this->downvotes++;
             $this->isVoted = 1;

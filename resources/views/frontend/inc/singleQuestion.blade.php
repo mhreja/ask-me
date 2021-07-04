@@ -3,7 +3,7 @@
         <a href="{{route('questionInner', $item->id)}}">{{ Str::limit($item->title, 85,'...') }}</a>
     </h2>
     @if($item->is_approved)
-    <a class="question-report" href="{{route('contact')}}">Report</a>
+    {{-- <a class="question-report" href="{{route('contact')}}">Report</a> --}}
     <div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
     @else
     @if ($item->rejection_comment == NULL)

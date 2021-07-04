@@ -45,10 +45,12 @@ class AnswerVoting extends Component
 
     public function like()
     {
-        if ($this->isVoted == 0){
+        $userId = Answer::find($this->answerId)->user_id;
+
+        if ($this->isVoted == 0 && $userId != Auth::user()->id){
             Answer::find($this->answerId)->increment('upvotes', 1);
             Answerlikedislike::create(['user_id'=>Auth::user()->id , 'answer_id'=>$this->answerId , 'upordown'=>1]);
-            $userId = Answer::find($this->answerId)->user_id;
+            
             User::find($userId)->increment('points', UPVOTE_POINT);
             $this->upvotes++;
             if($this->upvotes == 5){
@@ -61,10 +63,12 @@ class AnswerVoting extends Component
 
     public function dislike()
     {
-        if ($this->isVoted == 0){
+        $userId = Answer::find($this->answerId)->user_id;
+        
+        if ($this->isVoted == 0 && $userId != Auth::user()->id){
             Answer::find($this->answerId)->increment('downvotes', 1);
             Answerlikedislike::create(['user_id'=>Auth::user()->id , 'answer_id'=>$this->answerId , 'upordown'=>0]);
-            $userId = Answer::find($this->answerId)->user_id;
+            
             User::find($userId)->decrement('points', DOWNVOTE_POINT);
             $this->downvotes++;
             if($this->downvotes == 5){

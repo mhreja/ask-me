@@ -3,11 +3,11 @@
         <nav class="header-top-nav">
             <ul>
                 <li><a href="{{route('contact')}}"><i class="icon-envelope"></i>Contact</a></li>
-                <li><a href="{{route('contact')}}"><i class="icon-headphones"></i>Support</a></li>
+                {{-- <li><a href="{{route('contact')}}"><i class="icon-headphones"></i>Support</a></li> --}}
                 @auth
                 <li>
                     <a
-                        href="@if(Auth::user()->is_admin == 1){{route('dashboard')}}@else{{route('myprofile.show')}}@endif">
+                        href="@if(Auth::user()->is_admin == 1){{route('dashboard')}}@else{{route('profile.show')}}@endif">
                         <img width="18px" height="18px" src="{{ Auth::user()->profile_photo_url }}"
                             alt="{{ Auth::user()->name }}" style="border-radius: 50%; display: inline;">
                         {{ Auth::user()->name }}
