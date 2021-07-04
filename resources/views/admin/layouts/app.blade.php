@@ -49,12 +49,14 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-question"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">{{ config('app.name', 'Laravel') }} <sup>0.1</sup></div>
+                <div class="sidebar-brand-text mx-3">{{ config('app.name', 'Laravel') }} </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
+            @auth
+            @if (Auth::user()->is_admin ==1)
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{Route::current()->getName() == 'dashboard' ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('dashboard')}}">
@@ -108,6 +110,22 @@
                     <i class="fas fa-pen"></i>
                     <span>Answers</span></a>
             </li>
+            @endif
+
+            @if(Auth::user()->is_admin ==0)
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['profile.show'])) active @endif">
+                <a class="nav-link" href="{{route('profile.show')}}">
+                    <i class="fas fa-user"></i>
+                    <span>My Profile</span></a>
+            </li>
+
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['my-questions'])) active @endif">
+                <a class="nav-link" href="{{route('my-questions')}}">
+                    <i class="fas fa-question"></i>
+                    <span>My Questions</span></a>
+            </li>
+            @endif
+            @endauth
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -204,7 +222,11 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; {{ config('app.name', 'Laravel') }} {{date('Y')}}</span>
+                        <span>
+                            Copyright &copy; {{ config('app.name', 'Laravel') }} {{date('Y')}}
+                            |
+                            Powered By <strong>Md Hossain Reja</strong>
+                        </span>
                     </div>
                 </div>
             </footer>

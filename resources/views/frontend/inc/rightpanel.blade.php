@@ -26,23 +26,23 @@
 
                 @if($user->points >= RANK1MINPOINTS)
                 <p class="badge badge-platinum">
-                    {{RANK1NAME}}
-                    <small>{{$user->points}} Points</small>
+                    {{RANK1NAME}} -
+                    {{$user->points}} Points
                 </p>
                 @elseif($user->points >= RANK2MINPOINTS)
                 <p class="badge badge-gold">
-                    {{RANK2NAME}}
-                    <small>{{$user->points}} Points</small>
+                    {{RANK2NAME}} -
+                    {{$user->points}} Points
                 </p>
                 @elseif($user->points >= RANK3MINPOINTS)
                 <p class="badge badge-silver">
-                    {{RANK3NAME}}
-                    <small>{{$user->points}} Points</small>
+                    {{RANK3NAME}} -
+                    {{$user->points}} Points
                 </p>
                 @elseif($user->points >= RANK4MINPOINTS)
                 <p class="badge badge-bronze">
-                    {{RANK4NAME}}
-                    <small>{{$user->points}} Points</small>
+                    {{RANK4NAME}} -
+                    {{$user->points}} Points
                 </p>
                 @else
                 @endif

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Homepage - Ask Me')
+@section('title', 'NeetJeeBank - Learn, Discuss, Grow')
 
 @section('head')
 

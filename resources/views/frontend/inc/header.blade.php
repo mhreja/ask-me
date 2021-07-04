@@ -25,6 +25,7 @@
                         <li><a href="{{route('popularquestions')}}">Popular Questions</a></li>
                         <li><a href="{{route('mostansweredquestions')}}">Most Answered</a></li>
                         <li><a href="{{route('notansweredquestions')}}">Not Answered</a></li>
+                        <li><a href="{{route('adminfavquestions')}}">Admin's Favorite</a></li>
                     </ul>
                 </li>
                 <li
@@ -49,7 +50,7 @@
                     </ul>
                 </li>
                 <li
-                    class="@if(in_array(Request::route()->getName(), ['login', 'register', 'myprofile.show',])) current_page_item @endif">
+                    class="@if(in_array(Request::route()->getName(), ['login', 'register', 'profile.show',])) current_page_item @endif">
                     <a href="javascript: void(0)">My Account</a>
                     @guest
                     <ul>
@@ -64,8 +65,8 @@
 
                     @auth
                     <ul>
-                        <li class="{{Request::route()->getName()=='myprofile.show' ? 'current_page_item' : ''}}">
-                            <a href="{{route('myprofile.show')}}">My Profile</a>
+                        <li class="{{Request::route()->getName()=='profile.show' ? 'current_page_item' : ''}}">
+                            <a href="{{route('profile.show')}}">My Profile</a>
                         </li>
                         <li><a href="{{route('my-questions')}}">My Questions</a></li>
                         <li>
