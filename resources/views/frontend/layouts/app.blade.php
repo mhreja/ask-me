@@ -52,11 +52,12 @@
 
     <div class="go-up" style="right: 10px !important;"><i class="icon-chevron-up"></i></div>
 
-    <!-- Modal HTML embedded directly into document -->
-    <div id="ex1" class="modal">
-        <!--Do not remove -->
-        <p id="noticeContent"></p>
-        <a href="#" rel="modal:close">Close</a>
+    <div class="panel-pop" id="myModal" style="margin-top: -156px; top: 50%; display: none;">
+        <h2>Announcement<i class="icon-remove"></i></h2>
+        <div class="form-style form-style-3">
+            <p id="noticeContent"></p>
+            <div class="clearfix"></div>
+        </div>
     </div>
 
     <script src="{{asset('mhreja/assets/js/jquery.min.js')}}"></script>

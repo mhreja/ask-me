@@ -1166,11 +1166,11 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-    /* Signup */
+    /* myModal */
 
-    jQuery(".signup,.login-links-r a").click(function () {
+    jQuery(".modal-open").click(function () {
         jQuery(".panel-pop").animate({ top: "-100%" }, 10).hide();
-        jQuery("#signup").show().animate({ top: "50%" }, 500);
+        jQuery("#myModal").show().animate({ top: "50%" }, 500);
         jQuery("body").prepend("<div class='wrap-pop'></div>");
         wrap_pop();
         return false;
@@ -1179,11 +1179,11 @@ jQuery(document).ready(function ($) {
     /* Lost password */
 
     // jQuery(".login-password a").click(function () {
-    // 	jQuery(".panel-pop").animate({"top":"-100%"},10).hide();
-    // 	jQuery("#lost-password").show().animate({"top":"50%"},500);
-    // 	jQuery("body").prepend("<div class='wrap-pop'></div>");
-    // 	wrap_pop();
-    // 	return false;
+    //     jQuery(".panel-pop").animate({ top: "-100%" }, 10).hide();
+    //     jQuery("#lost-password").show().animate({ top: "50%" }, 500);
+    //     jQuery("body").prepend("<div class='wrap-pop'></div>");
+    //     wrap_pop();
+    //     return false;
     // });
 
     /* Panel pop */

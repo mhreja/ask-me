@@ -89,7 +89,7 @@
             @foreach (\App\Models\Announcement::latest()->take(5)->get() as $notice)
             <li class="related-item">
                 <h3>
-                    <a href="#ex1" class="notice-popup" rel="modal:open"
+                    <a href="javascript: void(0)" class="modal-open notice-popup"
                         data-route="{{route('notice.details',$notice->id)}}">
                         {{ Str::limit($notice->title, 75,'...') }}
                     </a>
