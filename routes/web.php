@@ -26,6 +26,22 @@ Route::get('questions/search', 'WelcomeController@searchedQuestions')->name('sea
 //Question Inner Page
 Route::get('question/{question}', 'WelcomeController@questionInner')->name('questionInner');
 
+//Todays corner and Notes and Videos
+Route::get('today/corners', 'ThenotesController@tcornerList')->name('tcorner');
+Route::get('/today/corners/{note}', 'ThenotesController@tcornerInner')->name('tcorner.inner');
+Route::view('/videos', 'frontend.videos')->name('videos.list');
+
+Route::get('notes', 'ThenotesController@notesList')->name('thenotes');
+Route::get('/notes/{note}', 'ThenotesController@notesInner')->name('thenotes.inner');
+
+//Notice details
+Route::get('get/notice/details/{id}', 'admin\AnnouncementController@noticeDetails')->name('notice.details');
+
+// Daily MCQ
+Route::get('daily-mcq-questions', 'WelcomeController@dailymcqList')->name('dailymcq.list');
+
+
+
 
 Route::middleware(['auth:sanctum', 'verified', 'user'])->group(function(){
 	//Mini Ask Now
@@ -71,5 +87,17 @@ Route::middleware(['auth:sanctum','admin'])->prefix('admin')->group(function(){
 	Route::get('answers/mark/approved/{answer}', 'admin\AnswerController@markApproved')->name('answers.markApproved');
 	Route::get('answers/mark/correct/{answer}', 'admin\AnswerController@markCorrect')->name('answers.markCorrect');
 	Route::post('answers/mark/rejected/{answer}', 'admin\AnswerController@markRejected')->name('answers.reject');
+
+	Route::resource('notes', 'admin\NotesController');
+	Route::resource('todays-corner', 'admin\TodayscornerController');
+
+	//Announcement
+	Route::resource('announcements', 'admin\AnnouncementController');
+
+	//Daily Questions
+	Route::view('daily-questions', 'admin.dailymcq.index')->name('dailymcq');
+	
+	//Videos
+	Route::view('video/tutorials', 'admin.videos.index')->name('videos');
 	
 });

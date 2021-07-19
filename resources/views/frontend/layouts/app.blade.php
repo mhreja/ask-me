@@ -52,6 +52,13 @@
 
     <div class="go-up" style="right: 10px !important;"><i class="icon-chevron-up"></i></div>
 
+    <!-- Modal HTML embedded directly into document -->
+    <div id="ex1" class="modal">
+        <!--Do not remove -->
+        <p id="noticeContent"></p>
+        <a href="#" rel="modal:close">Close</a>
+    </div>
+
     <script src="{{asset('mhreja/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('mhreja/assets/js/jquery-ui-1.10.3.custom.min.js')}}"></script>
     <script src="{{asset('mhreja/assets/js/jquery.easing.1.3.min.js')}}"></script>
@@ -70,47 +77,17 @@
     <script src="{{asset('mhreja/assets/js/custom.js')}}"></script>
     <script src="{{asset('mhreja/assets/js/sweetalert.js')}}"></script>
     <script src="{{asset('mhreja/assets/js/toastr.js')}}"></script>
+    <script src="{{asset('mhreja/assets/js/jquery.autoscroll.js')}}"></script>
+
+
+    <script src="{{asset('mhreja/assets/js/myjavascript.js')}}"></script>
+
     @livewireScripts
     @include('frontend.layouts.alerts')
 
     @yield('scripts')
 
-    <script>
-        var url = 'https://wati-integration-service.clare.ai/ShopifyWidget/shopifyWidget.js?11613';
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = url;
-        var options = {
-      "enabled":true,
-      "chatButtonSetting":{
-          "backgroundColor":"#4dc247",
-          "ctaText":"",
-          "borderRadius":"25",
-          "marginLeft":"0",
-          "marginBottom":"50",
-          "marginRight":"50",
-          "position":"right"
-      },
-      "brandSetting":{
-          "brandName":"NeetJeeBank",
-          "brandSubTitle":"Disscuss, Learn, Grow",
-          "brandImg":"https://neetjeebank.com/mhreja/assets/images/favicon.png",
-          "welcomeText":"Hi there!\nHow can I help you?",
-          "messageText":"Hello, I have a question.",
-          "backgroundColor":"#df3d20",
-          "ctaText":"Start Chat",
-          "borderRadius":"25",
-          "autoShow":false,
-          "phoneNumber":"919593352884"
-      }
-    };
-        s.onload = function() {
-            CreateWhatsappChatWidget(options);
-        };
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-    </script>
+
 </body>
 
 </html>

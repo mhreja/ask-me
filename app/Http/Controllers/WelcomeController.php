@@ -8,6 +8,7 @@ use App\Models\Subject;
 use App\Models\Topic;
 use App\Models\Question;
 use App\Models\Answer;
+use App\Models\Dailyquestion;
 
 class WelcomeController extends Controller
 {
@@ -107,6 +108,11 @@ class WelcomeController extends Controller
             ->where('is_approved', 1)
         ->orderBy('upvotes', 'DESC')->take(5)->get();
         return view('frontend.questionInner', ['question'=>$question, 'relatedQuestions'=>$relatedQuestions]);
+    }
+
+    public function dailymcqList(){
+        $mcqs = Dailyquestion::where('is_active', 1)->latest()->paginate(25);
+        return view('frontend.dailyMcqs', ['mcqs'=>$mcqs]);
     }
 
 

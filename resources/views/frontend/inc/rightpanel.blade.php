@@ -68,4 +68,37 @@
     </div>
     @endif
 
+    @if(\App\Models\Note::where('note_type', 1)->count() > 0)
+    <div class="widget">
+        <h3 class="widget_title"><i class="icon-quote-left"></i> Today's Corner</h3>
+        <ul class="related-posts data-list" data-autoscroll>
+            @foreach (\App\Models\Note::where('note_type', 1)->latest()->take(10)->get() as $note)
+            <li class="related-item">
+                <h3><a href="{{route('tcorner.inner', $note->id)}}">{{ Str::limit($note->title, 75,'...') }}</a></h3>
+                <div class="clear"></div><span>{{$note->created_at->diffForHumans()}}</span>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    @if(\App\Models\Announcement::count() > 0)
+    <div class="widget">
+        <h3 class="widget_title"><i class="icon-bullhorn"></i> Announcements</h3>
+        <ul class="related-posts data-list" data-autoscroll>
+            @foreach (\App\Models\Announcement::latest()->take(5)->get() as $notice)
+            <li class="related-item">
+                <h3>
+                    <a href="#ex1" class="notice-popup" rel="modal:open"
+                        data-route="{{route('notice.details',$notice->id)}}">
+                        {{ Str::limit($notice->title, 75,'...') }}
+                    </a>
+                </h3>
+                <div class="clear"></div><span>{{$notice->created_at->diffForHumans()}}</span>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
 </aside><!-- End sidebar -->

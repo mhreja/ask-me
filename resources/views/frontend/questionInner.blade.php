@@ -44,7 +44,7 @@
         <div class="col-md-9">
             <article class="question single-question question-type-normal">
                 <h2>
-                    <a href="single_question.html">{{$question->title}}</a>
+                    <a href="javascript:void(0)">{{$question->title}}</a>
                 </h2>
                 <a class="question-report" href="{{route('contact')}}">Report</a>
                 <div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
