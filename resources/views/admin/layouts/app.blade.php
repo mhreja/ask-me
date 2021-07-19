@@ -34,6 +34,7 @@
 
     <!-- Extra CSS-->
     @yield('head')
+    <script src="{{asset('js/app.js')}}" defer></script>
 </head>
 
 <body id="page-top">
@@ -326,7 +327,7 @@
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 
     <!-- Charts -->
-    <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
+    {{-- <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script> --}}
 
     <!-- Charts -->
     {{-- <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
@@ -355,7 +356,7 @@
     <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
     <!-- App JS -->
-    <script src="{{asset('js/app.js')}}"></script>
+    @stack('modals')
     @livewireScripts
 
 
