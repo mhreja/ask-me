@@ -37,3 +37,12 @@
     color: #fff !important;
     background-color: #b7b7b7;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.data-list {
+    height: 300px;
+    overflow-y: hidden;
+}

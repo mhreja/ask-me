@@ -81,12 +81,31 @@
                     </ul>
                     @endauth
                 </li>
-                <li class="{{Request::route()->getName()=='about' ? 'current_page_item' : ''}}">
-                    <a href="{{route('about')}}">About Us</a>
+
+
+                <li
+                    class="@if(in_array(Request::route()->getName(), ['tcorner', 'thenotes',])) current_page_item @endif">
+                    <a href="javascript: void(0)">Notes</a>
+                    <ul>
+                        <li class="{{Request::route()->getName()=='tcorner' ? 'current_page_item' : ''}}">
+                            <a href="{{route('tcorner')}}">Today's Corner</a>
+                        </li>
+                        <li class="{{Request::route()->getName()=='dailymcq.list' ? 'current_page_item' : ''}}">
+                            <a href="{{route('dailymcq.list')}}">Daily MCQ</a>
+                        </li>
+                        <li class="{{Request::route()->getName()=='thenotes' ? 'current_page_item' : ''}}">
+                            <a href="{{route('thenotes')}}">Notes</a>
+                        </li>
+                        <li class="{{Request::route()->getName()=='videos.list' ? 'current_page_item' : ''}}">
+                            <a href="{{route('videos.list')}}">Videos</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="{{Request::route()->getName()=='contact' ? 'current_page_item' : ''}}">
-                    <a href="{{route('contact')}}">Contact Us</a>
+
+                <li class="current_page_item">
+                    <a href="https://blog.neetjeebank.com" target="_blank">Blog</a>
                 </li>
+
             </ul>
         </nav>
     </section><!-- End container -->

@@ -110,6 +110,48 @@
                     <i class="fas fa-pen"></i>
                     <span>Answers</span></a>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['todays-corner.index',
+                'todays-corner.show', 'todays-corner.edit', 'todays-corner.create'])) active @endif">
+                <a class="nav-link" href="{{route('todays-corner.index')}}">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>Today's Corner</span></a>
+            </li>
+
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['notes.index',
+                'notes.show', 'notes.edit', 'notes.create'])) active @endif">
+                <a class="nav-link" href="{{route('notes.index')}}">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>Notes</span></a>
+            </li>
+
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['videos'])) active @endif">
+                <a class="nav-link" href="{{route('videos')}}">
+                    <i class="fas fa-video"></i>
+                    <span>Videos</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['announcements.index',
+                'announcements.show', 'announcements.edit', 'announcements.create'])) active @endif">
+                <a class="nav-link" href="{{route('announcements.index')}}">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Announcements</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['dailymcq'])) active @endif">
+                <a class="nav-link" href="{{route('dailymcq')}}">
+                    <i class="fas fa-question"></i>
+                    <span>Daily MCQ</span></a>
+            </li>
             @endif
 
             @if(Auth::user()->is_admin ==0)

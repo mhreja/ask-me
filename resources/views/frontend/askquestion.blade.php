@@ -70,7 +70,7 @@
                                             @empty
                                             @endforelse
                                         </select>
-                                        @error('subject')
+                                        @error('subject_id')
                                         <span style="color: #fe0000;">
                                             {{$message}}
                                         </span>
@@ -83,7 +83,7 @@
                                         <select name="topic_id" id="topic">
                                             <option disabled selected>Select a Topic</option>
                                         </select>
-                                        @error('topic')
+                                        @error('topic_id')
                                         <span style="color: #fe0000;">
                                             {{$message}}
                                         </span>
