@@ -45,6 +45,19 @@
             <article class="question single-question question-type-normal">
                 <h2>
                     <a href="javascript:void(0)">{{$question->title}}</a>
+                    <br>
+                    <small>
+                        <span class="question-category">
+                            <a href="{{route('subjectQuestions', $question->subject->id)}}"><i
+                                    class="icon-folder-close"></i>
+                                {{$question->subject->subject}}&nbsp;&nbsp;
+                            </a>
+                        </span>
+                        <span class="question-date">
+                            <i class="icon-time"></i>
+                            {{$question->created_at->diffForHumans()}}
+                        </span>
+                    </small>
                 </h2>
                 <a class="question-report" href="{{route('contact')}}">Report</a>
                 <div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
@@ -64,18 +77,11 @@
                     'downvotes'=>$question->downvotes
                     ])
 
-                    <span class="question-category">
-                        <a href="{{route('subjectQuestions', $question->subject->id)}}"><i
-                                class="icon-folder-close"></i>
-                            {{$question->subject->subject}}&nbsp;&nbsp;
-                        </a>
-                    </span>
-                    <span class="question-date">
-                        <i class="icon-time"></i>
-                        {{$question->created_at->diffForHumans()}}
-                    </span>
+                    @livewire('mark-fav', [
+                    'questionId'=>$question->id
+                    ])
 
-                    <div class="question-details">
+                    <div class="question-details" style="float: right">
                         @if($question->has_admin_answered == true)
                         <span class="question-answered question-answered-done">
                             <i l_background="#3498db" l_background_hover="#34495E" class="icon-ok-sign ul_l_circle"
@@ -93,7 +99,26 @@
             </article>
 
 
+            @if($question->tags != NULL)
+            <div class="share-tags page-content">
+                <div class="question-tags"><i class="icon-tags"></i>
 
+                    @php
+                    $tagArr = explode(',', $question->tags);
+                    @endphp
+
+                    @foreach ($tagArr as $tag)
+                    <a href="{{route('searchedQuestions')}}?keyword={{$tag}}">{{$tag}},</a>
+                    @endforeach
+
+                </div>
+                <div>
+                    <i class="icon-tags"></i>
+                    Tags
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            @endif
 
             <!-- Related Question -->
             @if($relatedQuestions->count() > 0)

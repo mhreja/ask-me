@@ -24,6 +24,8 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{$question->title}}</h1>
 
+
+
         <div>
             @if($question->is_approved == 1)
             <span class="badge badge-success">Approved</span>
@@ -48,6 +50,17 @@
             @endif
         </div>
 
+    </div>
+
+    <div class="my-2">
+        @php
+        if($question->tags != NULL){
+        $tagArr = explode(',', $question->tags);
+        foreach ($tagArr as $tag) {
+        echo '<span class="badge badge-info">#'.$tag.'</span> ';
+        }
+        }
+        @endphp
     </div>
 
     <div class="card shadow mb-4">

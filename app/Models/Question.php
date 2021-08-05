@@ -22,6 +22,7 @@ class Question extends Model
         'photo',
         'upvotes',
         'downvotes',
+        'tags'
     ];
 
     public function subject()

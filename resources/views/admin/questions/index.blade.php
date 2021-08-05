@@ -186,10 +186,27 @@
     </div>
     </button>
 
+    <!-- Approve Modal -->
+    <div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="approveModalHead"></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="approveFormBody">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Reject Modal -->
     <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
         aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="rejectModalHead"></h3>
@@ -284,9 +301,7 @@
                 deleteRoute = deleteRoute.replace(':id', data.ID);
 
                 if(data.Approved == 0){
-                    var approvingRoute = "{{route('questions.markApproved', ':id')}}";
-                    approvingRoute = approvingRoute.replace(':id', data.ID);
-                    var approvingLink = '<a class="dropdown-item" href="'+approvingRoute+'">Mark as Approved</a>';
+                    var approvingLink = '<a class="dropdown-item approve-question" href="javascript:void()" data-id="'+data.ID+'"  data-toggle="modal" data-target="#approveModal">Mark as Approved</a>';
                 }else var approvingLink = '';
 
                 if(data.Favorite == 0){
@@ -355,6 +370,29 @@
                 swal("The question is safe!");
             }
         });
+    });
+
+
+    //Approve Modal Form Create
+    $('#mydataTable').on('click', '.approve-question', function(){
+        var id = $(this).data('id');
+        var route = "{{route('questions.markApproved', ':id')}}";
+        route = route.replace(':id', id);
+
+        var modalHeadHtml = 'Approve Question(id: '+id+')';
+
+        var formBodyHtml = '<form action="'+route+'" method="POST" id="approveForm">'+
+            '@csrf'+
+            '<div class="form-group">'+
+                '<label>Question Tags (comma separated)</label>'+
+                '<textarea class="form-control" name="tags" cols="30" rows="5" placeholder="e.g: IAS 2018, WBCS 2015, PSC 2020"></textarea>'+
+            '</div>'+
+            '<button type="button" class="btn btn-block btn-outline-secondary" data-dismiss="modal">Cancel</button>'+
+            '<button class="btn btn-block btn-outline-success" type="submit">Approve</button>'+
+        '</form>';
+
+        $('#approveModalHead').html(modalHeadHtml);
+        $('#approveFormBody').html(formBodyHtml);
     });
 
     //Reject Modal Form Create

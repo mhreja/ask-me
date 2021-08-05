@@ -108,12 +108,15 @@ class QuestionController extends Controller
     /**
      * Mark as Approved
     */
-    public function markApproved(Question $question)
+    public function markApproved(Request $request, Question $question)
     {
         $question->user->increment('points', QUESTION_APPROVED_POINT);
         $data = [
             'is_approved'=>1,
         ];
+        if($request->input('tags')){
+            $data['tags'] = $request->input('tags');
+        }
         $question->update($data);
         return redirect()->back()->with('success', "Question(id: $question->id) marked as Approved.");
     }

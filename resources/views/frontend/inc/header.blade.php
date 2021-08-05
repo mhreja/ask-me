@@ -69,6 +69,7 @@
                             <a href="{{route('profile.show')}}">My Profile</a>
                         </li>
                         <li><a href="{{route('my-questions')}}">My Questions</a></li>
+                        <li><a href="{{route('my-fav-questions')}}">My Favorite Questions</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

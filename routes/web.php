@@ -54,6 +54,7 @@ Route::middleware(['auth:sanctum', 'verified', 'user'])->group(function(){
 
 	//My Questions
 	Route::get('my-questions', 'WelcomeController@myquestions')->name('my-questions');
+	Route::get('my-favorite-questions', 'WelcomeController@myFavQuestions')->name('my-fav-questions');
 });
 
 //Common
@@ -78,7 +79,7 @@ Route::middleware(['auth:sanctum','admin'])->prefix('admin')->group(function(){
 
 	Route::resource('questions', 'admin\QuestionController');
 	Route::get('questions/get/data', 'admin\QuestionController@getData')->name('questions.getData');
-	Route::get('questions/mark/approved/{question}', 'admin\QuestionController@markApproved')->name('questions.markApproved');
+	Route::post('questions/mark/approved/{question}', 'admin\QuestionController@markApproved')->name('questions.markApproved');
 	Route::get('questions/mark/favorite/{question}', 'admin\QuestionController@markFavorite')->name('questions.markFavorite');
 	Route::post('questions/mark/rejected/{question}', 'admin\QuestionController@markRejected')->name('questions.reject');
 

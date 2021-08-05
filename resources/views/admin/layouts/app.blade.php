@@ -167,6 +167,12 @@
                     <i class="fas fa-question"></i>
                     <span>My Questions</span></a>
             </li>
+
+            <li class="nav-item @if(in_array(Route::current()->getName(), ['my-fav-questions'])) active @endif">
+                <a class="nav-link" href="{{route('my-fav-questions')}}">
+                    <i class="fas fa-question"></i>
+                    <span>My Favorite Questions</span></a>
+            </li>
             @endif
             @endauth
 

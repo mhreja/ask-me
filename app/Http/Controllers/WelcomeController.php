@@ -8,6 +8,7 @@ use App\Models\Subject;
 use App\Models\Topic;
 use App\Models\Question;
 use App\Models\Answer;
+use App\Models\Favoritequestion;
 use App\Models\Dailyquestion;
 
 class WelcomeController extends Controller
@@ -80,6 +81,15 @@ class WelcomeController extends Controller
         return view('frontend.myquestions', ['myQuestions'=>$myQuestions]);
     }
 
+    public function myFavQuestions()
+    {
+        $qtnIds = Favoritequestion::where('user_id', Auth::user()->id)->pluck('question_id')->toArray();
+        $favQuestions = Question::whereIn('questions.id', $qtnIds)
+        ->where('questions.is_approved', 1)
+        ->paginate(6);
+        return view('frontend.myFavQuestions', ['favQuestions'=>$favQuestions]);
+    }
+
     public function subjectQuestions(Subject $subject){
         $questions = $subject->questions()->where('is_approved', 1)->latest()->paginate(6);
         return view('frontend.subjectQuestions', ['subject'=>$subject, 'questions'=>$questions]);
@@ -94,6 +104,7 @@ class WelcomeController extends Controller
         $questions = Question::where('is_approved', 1)
             ->where('title', 'LIKE', "%{$request->keyword}%")
             ->orWhere('details', 'LIKE', "%{$request->keyword}%")
+            ->orWhere('tags', 'LIKE', "%{$request->keyword}%")
         ->paginate(6);
         return view('frontend.searchedQuestions', ['questions'=>$questions]);
     }
