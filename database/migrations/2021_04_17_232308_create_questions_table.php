@@ -27,6 +27,7 @@ class CreateQuestionsTable extends Migration
             $table->longText('photo')->nullable();
             $table->bigInteger('upvotes')->default(0)->comment('total likes');
             $table->bigInteger('downvotes')->default(0)->comment('total dislikes');
+            $table->longText('tags')->nullable();
             $table->timestamps();
         });
     }
