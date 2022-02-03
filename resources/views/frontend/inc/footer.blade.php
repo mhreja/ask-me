@@ -56,7 +56,7 @@
         <div class="copyrights f_left">
             Copyright &copy; {{ config('app.name', 'Laravel') }} {{date('Y')}}
             | All Rights Reserved | Powered by
-            <a original-title="Call: 9593352884" class="tooltip-n" href="javascript:void(0)">Md Hossain Reja</a>
+            <a href="https://lookmyweb.com" style="color: #EE491C">Lookmyweb</a>
         </div>
         <div class="social_icons f_right">
             <ul>
